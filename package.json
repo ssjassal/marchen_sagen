@@ -1,0 +1,23 @@
+{
+  "name": "marchen_sagen_frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ssjassal/marchen_sagen.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ssjassal/marchen_sagen/issues"
+  },
+  "homepage": "https://github.com/ssjassal/marchen_sagen#readme",
+  "dependencies": {
+    "express": "^4.15.3"
+  }
+}
