@@ -1,0 +1,22 @@
+* {
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+
+*:before, *:after {
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+/*=========MAIN BODY CSS=========*/
+body{
+   background-image: url();
+}
+/*=========RESPONSIVE MEDIA QUERIES=========*/
+@media screen and (max-width: 1140px) {
+    .container li div h3 { font-size: 140px }
+}
+@media screen and (max-width: 600px) {
+    .container li div h3 { font-size: 80px }
+}
