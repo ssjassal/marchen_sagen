@@ -47,7 +47,7 @@
 .ms-slideshow li div {
     z-index: 1000;
     position: absolute;
-    bottom: 3%;
+    bottom: 0;
     left: 0px;
     width: 100%;
     text-align: center;
@@ -71,7 +71,7 @@
     background-image: url(../images/ft.jpg)
 }
 .ms-slideshow li:nth-child(2) span {
-    background-image: url(../images/ft1.jpg);
+    background-image: url(../images/hanzel.jpg);
     -webkit-animation-delay: 6s;
     -moz-animation-delay: 6s;
     -o-animation-delay: 6s;
@@ -239,35 +239,92 @@
     .ms-slideshow li div h3 { font-size: 80px }
 }
 /*=========HEADER CSS=========*/
-/*header{
-   height: 200px;
+header{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 10%%
 }
 
-h1{
+/*h1{
 	font-family: 'Berkshire Swash', cursive;
 }*/
+h4{
+   font-family: 'Henny Penny', cursive;
+   font-size: 35px;
+   color: #fff;
+   padding: 0;
+}
 .headerTitle{
    width: 100%;
-	padding-top: 3%;
+	padding-top: 1%;
 	background-color: rgba(0,0,0,0.5);
 	box-shadow: 5px 5px 20px #333;
 }
-
+.login{
+   font-family: 'Henny Penny', cursive;
+   background-color: #F5F5F5;
+   color: #000;
+}
+.signup{
+   font-family: 'Henny Penny', cursive;
+   background-color: #F5F5F5;
+   color: #000;
+}
+.formHeader{
+   color: #000;
+}
 /*=========MAIN CSS=========*/
 body{
    /*background-color: red;*/
    color: white;
-   background-image: url(./assets/parchmentbanner.jpg);
    background-repeat: no-repeat;
    background-size: cover;
    margin: 0;
 }
-
-.welcome{
-	background-color: rgba(0,0,0,0.5);
-	
+li{
+   list-style: none;
 }
+.welcome{
+   display: flex;
+   justify-content: center;
+   transform: translate(0,50%);
+	background-color: rgba(0,0,0,0.5);
+   width: 30%;
+   height: 60%;
 
+}
+/*=========MODAL CSS=========*/
+.active{
+   z-index: 1;
+}
+/*.modalStyle{
+   background-color: #9B9B9B;
+}*/
+.modal-header {
+    padding:9px 15px;
+    /*border-bottom:1px solid #eee;*/
+    background-color: #9B9B9B;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+     border-top-left-radius: 5px;
+     border-top-right-radius: 5px;
+ }
+.modal-body{
+    background-color: #9B9B9B;
+    text-align: center;
+}
+.modal-footer{
+   background-color: #9B9B9B;
+   -webkit-border-bottom-left-radius: 5px;
+   -webkit-border-bottom-right-radius: 5px;
+   -moz-border-radius-bottomleft: 5px;
+   -moz-border-radius-bottomright: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
 /*=========MODEST GRID=========*/
 /*.wrapper {
 	max-width: 1280px;
