@@ -1,0 +1,145 @@
+/** {
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+
+*:before, *:after {
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}*/
+header, div, main, aside, footer {
+  border: 1px solid red;
+}
+/*=========MAIN BODY CSS=========*/
+/*html{
+}*/
+body{
+   background-image: url(../images/ft21.png);
+   background-repeat: repeat;
+   /*background-position: left top;*/
+   background-size: 25%;
+   background-color: #B6B7B7;
+   display: flex;
+   min-height: 100vh;
+   flex-direction: column;
+   color: #fff;
+}
+main {
+  flex: 1;
+  background-color: rgba(64,65,65,0.75);
+}
+aside{
+   order: -1;
+   float: left;
+   overflow: hidden;
+}
+.container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 0;
+  justify-content: flex-end;
+
+  /*padding-top: 30%;*/
+}
+/*=========HEADER CSS=========*/
+
+header{
+   display: flex;
+   justify-content: center;
+   margin-top: 4%;
+   padding: 5%;
+   width: 100%;
+   order: -2;
+   text-align: center;
+   background-color: rgba(64,65,65,0.75);
+}
+h3{
+   color: #fff;
+   font-size: 380%;
+   text-align: center;
+}
+h4
+{
+   color: #fff;
+}
+.headerTitle{
+
+}
+/*=========NAVBAR CSS=========*/
+nav {
+  order: -1;
+}
+.navbar{
+   background-color: #404141;
+}
+/*.navbar-center{
+   display: flex;
+   justify-content: center;
+}*/
+.navbar-brand{
+   height: auto;
+   font-family: 'Henny Penny', cursive;
+   text-align: center;
+}
+.navbar-header{
+
+}
+/*=========FOOTER CSS=========*/
+footer{
+   background-color: rgba(64,65,65,0.75);
+
+}
+.spanright{
+   font-family: 'Henny Penny', cursive;
+   font-size: 10px;
+   color: #fff;
+   padding: 0;
+   float: right;
+
+
+}
+.spanleft{
+   font-family: 'Henny Penny', cursive;
+   font-size: 10px;
+   color: #fff;
+   padding: 0;
+   float: left;
+
+}
+/*=========RESPONSIVE MEDIA QUERIES=========*/
+@media screen and (max-width: 760px) {
+   .container {
+      flex-direction: row;
+      flex: 1;
+   }
+   header{
+      flex-direction: row;
+   }
+   main {
+    flex: 1;
+    flex: 0 0 30em;
+   }
+   nav, aside {
+   flex: 0 0 12em;
+ }
+
+}
+@media screen and (max-width: 600px) {
+   .container {
+     flex-direction: row;
+     flex: 1;
+   }
+   header{
+      flex-direction: column;
+   }
+   main {
+    flex: 1;
+    flex: 0 0 12em;
+   }
+   nav, aside {
+   flex: 0 0 12em;
+ }
+}

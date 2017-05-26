@@ -2,60 +2,144 @@
 <html>
 <head>
    <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+   <!-- JQUERY -->
+   <script
+   src="https://code.jquery.com/jquery-3.2.1.min.js"
+   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+   crossorigin="anonymous"></script>
+   <!--Angular-->
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+   <!--CSS Frameworks-->
+   <!--Bootstrap required files-->
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
    <!--Vuetify.js required files-->
-   <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet" type="text/css">
+   <!-- <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet" type="text/css">
    <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet" type="text/css">
    <script src="https://unpkg.com/vuetify/dist/vuetify.min.js"></script>
-   <script src="https://unpkg.com/vue/dist/vue.js"></script>
-   <script>
-  export default {
-    data () {
-      return {
-        dialog: false
-      }
-    }
-  }
-</script>
+   <script src="https://unpkg.com/vue/dist/vue.js"></script> -->
    <!--Fonts-->
    <link href="https://fonts.googleapis.com/css?family=Mystery+Quest" rel="stylesheet">
    <link href="https://fonts.googleapis.com/css?family=Henny+Penny" rel="stylesheet">
    <!-- <link href="https://fonts.googleapis.com/css?family=Sacramento" rel="stylesheet"> -->
    <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash" rel="stylesheet">
-   <!--Stylesheet-->
+   <!--Main Stylesheet-->
    <link rel="stylesheet" href="./css/style.css">
    <!--App-->
    <script src="app.js" type="text/javascript"></script>
    <title>Märchen & Sagen</title>
 </head>
-   <body>
-      <div class="welcome">Once upon a time...
-         <template>
-  <v-layout row justify-center>
-    <v-dialog v-model="dialog">
-      <v-btn primary light slot="activator">Open Dialog</v-btn>
-      <v-card>
-        <v-card-row>
-          <v-card-title>Use Google's location service?</v-card-title>
-        </v-card-row>
-        <v-card-row>
-          <v-card-text>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</v-card-text>
-        </v-card-row>
-        <v-card-row actions>
-          <v-btn class="green--text darken-1" flat="flat" @click.native="dialog = false">Disagree</v-btn>
-          <v-btn class="green--text darken-1" flat="flat" @click.native="dialog = false">Agree</v-btn>
-        </v-card-row>
-      </v-card>
-    </v-dialog>
-  </v-layout>
-</template>
+<body>
+   <ul class="ms-slideshow">
+      <li>
+         <span>01</span>
+         <div class="headerTitle">
+            <h3 >Mär·chen & Sȯ·gen<br>
+               <h4 class="subtitle">"The world where fairytales & legends are born."</h4><br>
+               <button class="login btn btn-default btn-lg" data-toggle="modal" data-target="#login">Log In</button>
+               <button class="signup btn btn-default btn-lg" data-toggle="modal" data-target="#signup"> Sign Up</button>
+               <h5 class="spanright">Images by: Charlotte "Lotte" Reiniger (2 June 1899 – 19 June 1981)</h5><h5 class="spanleft">Made with &hearts; by Soniya Jassal &copy; 2017 GA WDIR Hopper Cohort</h5></h3>
+         </div>
+      </li>
+      <li>
+         <span>02</span><div class="headerTitle">
+            <h3 >Mär·chen & Sȯ·gen<br>
+               <h4 class="subtitle">"The world where fairytales & legends are born."</h4><br>
+               <button class="login btn btn-default btn-lg" data-toggle="modal" data-target="#login">Log In</button>
+               <button class="signup btn btn-default btn-lg" data-toggle="modal" data-target="#signup"> Sign Up</button>
+               <h5 class="spanright">Images by: Charlotte "Lotte" Reiniger (2 June 1899 – 19 June 1981)</h5><h5 class="spanleft">Made with &hearts; by Soniya Jassal &copy; 2017 GA WDIR Hopper Cohort</h5></h3>
+         </div>
+      </li>
+      <li>
+         <span>03</span><div class="headerTitle">
+            <h3 >Mär·chen & Sȯ·gen<br>
+               <h4 class="subtitle">"The world where fairytales & legends are born."</h4><br>
+               <button class="login btn btn-default btn-lg" data-toggle="modal" data-target="#login">Log In</button>
+               <button class="signup btn btn-default btn-lg" data-toggle="modal" data-target="#signup"> Sign Up</button>
+               <h5 class="spanright">Images by: Charlotte "Lotte" Reiniger (2 June 1899 – 19 June 1981)</h5><h5 class="spanleft">Made with &hearts; by Soniya Jassal &copy; 2017 GA WDIR Hopper Cohort</h5></h3>
+         </div>
+      </li>
+      <li>
+         <span>04</span><div class="headerTitle">
+            <h3 >Mär·chen & Sȯ·gen<br>
+               <h4 class="subtitle">"The world where fairytales & legends are born."</h4><br>
+               <button class="login btn btn-default btn-lg" data-toggle="modal" data-target="#login">Log In</button>
+               <button class="signup btn btn-default btn-lg" data-toggle="modal" data-target="#signup"> Sign Up</button>
+               <h5 class="spanright">Images by: Charlotte "Lotte" Reiniger (2 June 1899 – 19 June 1981)</h5><h5 class="spanleft">Made with &hearts; by Soniya Jassal &copy; 2017 GA WDIR Hopper Cohort</h5></h3>
+         </div>
+      </li>
+      <li>
+         <span>05</span><div class="headerTitle">
+            <h3 >Mär·chen & Sȯ·gen<br>
+               <h4 class="subtitle">"The world where fairytales & legends are born."</h4><br>
+               <button class="login btn btn-default btn-lg" data-toggle="modal" data-target="#login">Log In</button>
+               <button class="signup btn btn-default btn-lg" data-toggle="modal" data-target="#signup"> Sign Up</button>
+               <h5 class="spanright">Images by: Charlotte "Lotte" Reiniger (2 June 1899 – 19 June 1981)</h5><h5 class="spanleft">Made with &hearts; by Soniya Jassal &copy; 2017 GA WDIR Hopper Cohort</h5></h3>
+         </div>
+      </li>
+      <li>
+         <span>06</span><div class="headerTitle">
+            <h3 >Mär·chen & Sȯ·gen<br>
+               <h4 class="subtitle">"The world where fairytales & legends are born."</h4><br>
+               <button class="login btn btn-default btn-lg" data-toggle="modal" data-target="#login">Log In</button>
+               <button class="signup btn btn-default btn-lg" data-toggle="modal" data-target="#signup"> Sign Up</button>
+               <h5 class="spanright">Images by: Charlotte "Lotte" Reiniger (2 June 1899 – 19 June 1981)</h5><h5 class="spanleft">Made with &hearts; by Soniya Jassal &copy; 2017 GA WDIR Hopper Cohort</h5></h3>
+         </div>
+      </li>
+   </ul>
+
+   <!--MODALS-->
+   <!-- Login Modal -->
+   <div class="modal fade" id="login" role="dialog">
+      <div class="modal-dialog">
+         <!-- Modal content-->
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+               <h4 class="formHeader modal-title">Log <img src="images/ft16.png" width="40" height="40"/> In</h4>
+            </div>
+            <div class="formInput modal-body">
+               <div ng-show="!CAH.isLoggedIn" style="color:red">{{CAH.logInMessage}}</div>
+               <input type="text" ng-model="userPass.username" placeholder="Userame"/><br>
+               <input type="text" ng-model="userPass.password" placeholder="Password"/><br>
+            </div>
+            <div class="modal-footer">
+               <button class="btn btn-default" type="submit" name="button" ng-click="CAH.loginUser(userPass)">Log In</button>
+               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+         </div>
       </div>
-      <ul class="ms-slideshow">
-            <li><span>01</span><div class="headerTitle"><h3>Märchen & Sagen</h3></div></li>
-            <li><span>02</span><div class="headerTitle"><h3 >Märchen & Sagen</h3></div></li>
-            <li><span>03</span><div class="headerTitle"><h3 >Märchen & Sagen</h3></div></li>
-            <li><span>04</span><div class="headerTitle"><h3 >Märchen & Sagen</h3></div></li>
-            <li><span>05</span><div class="headerTitle"><h3 >Märchen & Sagen</h3></div></li>
-            <li><span>06</span><div class="headerTitle"><h3 >Märchen & Sagen</h3></div></li>
-      </ul>
-   </body>
+   </div>
+   <!-- Sign Up Modal -->
+   <div class=" modal fade" id="signup" role="dialog">
+      <div class="modal-dialog">
+         <!-- Modal content-->
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+               <h4 class="formHeader modal-title"><img src="images/ft16.png" width="40" height="40"/> Sign Up as a New Storyteller <img src="images/ft16.png" width="40" height="40"/></h4>
+            </div>
+            <div class="formInput modal-body">
+               <form class="modal-body">
+                  <div ng-show="!CAH.isRegistered" style="color:red">{{CAH.createUserMessage}}</div><br>
+                  <input ng-model="CAH.name" type="text" placeholder="Name"/><span style="color:red">*</span><br>
+                  <input ng-model="CAH.email" type="text" placeholder="Email"/><span style="opacity: 0">*</span><br>
+                  <!-- <input type="text" placeholder="Date of Birth"/><br> -->
+                  <input ng-model="CAH.img" type="text" placeholder="Image URL"/><span style="opacity: 0">*</span><br>
+                  <input ng-model="CAH.username" type="text" placeholder="username"/><span style="color:red">*</span><br>
+                  <input ng-model="CAH.password" type="text" placeholder="Password"/><span style="color:red">*</span><br>
+                  <button class="btn btn-default" type="submit" name="button" ng-click="CAH.createUser()">Submit</button>
+               </form >
+            </div>
+            <div class="modal-footer">
+               <button class="btn btn-default" type="submit" name="button" ng-click="CAH.loginUser(userPass)">Login</button>
+               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+         </div>
+      </div>
+   </div>
+
+</body>
 </html>
