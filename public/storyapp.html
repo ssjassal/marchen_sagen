@@ -4,7 +4,7 @@
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-   <!-- JQUERY -->
+   <!-- JQuery -->
    <script
    src="https://code.jquery.com/jquery-3.2.1.min.js"
    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -25,16 +25,29 @@
    <link href="https://fonts.googleapis.com/css?family=Henny+Penny" rel="stylesheet">
    <!-- <link href="https://fonts.googleapis.com/css?family=Sacramento" rel="stylesheet"> -->
    <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Princess+Sofia" rel="stylesheet">
+   <!-- <link href="https://fonts.googleapis.com/css?family=Stalemate" rel="stylesheet"> -->
+   <link href="https://fonts.googleapis.com/css?family=Kristi" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Montez" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Clicker+Script" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Philosopher" rel="stylesheet">
    <!--Main Stylesheet-->
    <link rel="stylesheet" href="./css/app.css">
    <!--App-->
+   <!-- <script>
+   $(function(){
+          $("body").load("./partials/nav.html");
+       });
+   </script> -->
    <script src="app.js" type="text/javascript"></script>
    <title>Märchen & Sagen</title>
 </head>
 <body ng-controller="StoryController as story">
    <!--Bootstrap Nav-->
    <!-- Fixed navbar -->
-   <!-- Fixed navbar -->
+    <!-- <% include ./partials/nav %> -->
+    <!-- <link rel="stylesheet" href="./partials/nav.html"> -->
+    <!-- <div id="nav"><div> -->
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -47,82 +60,131 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li role="separator" class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
-            </li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#about">Recent Stories</a></li>
+            <li><a href="#contact">Members</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="../navbar/">Default</a></li>
-            <li><a href="../navbar-static-top/">Static top</a></li>
-            <li class="active"><a href="./">Fixed top <span class="sr-only">(current)</span></a></li>
+            <li><a href="../navbar-static-top/">Log Out</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
+    <header>
+      <div class="headerTitle navbar-brand" >
+          <!-- <img src="images/ft16.png" width="40" height="40"/> -->
+          <h3>Mär·chen & Sȯ·gen<br>
+             <h4 class="subtitle">"The world where fairytales & legends are born."</h4>
+          </div>
+    </header>
+    <div class="content">
    <div class="container">
-
-      <header>
-         <div class="headerTitle navbar-brand" >
-            <!-- <img src="images/ft16.png" width="40" height="40"/> -->
-            <h3>Mär·chen & Sȯ·gen<br>
-               <h4 class="subtitle">"The world where fairytales & legends are born."</h4>
+      <div class="text">
+			<div class="title">
+				<div class="title">
+					<h3><a href="single.html">{{story.title}}</a></h3>
+				</div>
+            <div >
+               <p class="member"><a href="#">{{story.name}}</a><br><span>{{story.date_created}}</span></p>
             </div>
-      </header>
-      <main>
-
-         <h1>{{story.story}}</h1>
-         <h1>Some text to enable scrolling</h1>
-         <h1>Some text to enable scrolling</h1>
-         <h1>Some text to enable scrolling</h1>
-         <h1>Some text to enable scrolling</h1>
-         <h1>Some text to enable scrolling</h1>
-         <h1>Some text to enable scrolling</h1>
-         <h1>Some text to enable scrolling</h1>
-         <h1>Some text to enable scrolling</h1>
-         <h1>Some text to enable scrolling</h1>
-         <h1>Some text to enable scrolling</h1>
-         <h1>Some text to enable scrolling</h1>
-         <h1>Some text to enable scrolling</h1>
-         <h1>Some text to enable scrolling</h1>
-         <h1>Some text to enable scrolling</h1>
-         <h1>Some text to enable scrolling</h1>
-         <h1>Some text to enable scrolling</h1>
-         <h1>Some text to enable scrolling</h1>
-         <h1>Some text to enable scrolling</h1>
-         <h1>Some text to enable scrolling</h1>
-         <h1>Some text to enable scrolling</h1>
-         <h1>Some text to enable scrolling</h1>
-         <h1>Some text to enable scrolling</h1>
-         <h1>Some text to enable scrolling</h1>
-         <h1>Some text to enable scrolling</h1>
-         <h1>Some text to enable scrolling</h1>
-         <h1>Some text to enable scrolling</h1>
-         <h1>Some text to enable scrolling</h1>
-         <h1>Some text to enable scrolling</h1>
-         <h1>Some text to enable scrolling</h1>
-         <h1>Some text to enable scrolling</h1>
-         <h1>Some text to enable scrolling</h1>
-         <h1>Some text to enable scrolling</h1>
-         <h1>Some text to enable scrolling</h1>
-         <h1>Some text to enable scrolling</h1>
-      </main>
-      <aside><img src="images/banner.jpg"/></aside>
-      <footer>
-         <h5 class="spanright">Images by: Charlotte "Lotte" Reiniger (2 June 1899 – 19 June 1981)</h5><h5 class="spanleft">Made with &hearts; by Soniya Jassal &copy; 2017 GA WDIR Hopper Cohort</h5>
-      </footer>
+				<div class="clearfix"> </div>
+				<div class="title-grid">
+					<a href="#"><img src="{{story.img}}"/></a>
+					<p class="description">{{story.description}}</p>
+					<p class="storyText">{{story.storyContent}}</p>
+				</div>
+				<div class="add">
+					<a href="single.html">Add to the Story</a>
+				</div>
+			</div>
+			<div class="categories">
+				<div class="categoryBorder">
+					<div class="categoryStyle">
+						<h3>Categories</h3>
+						<ul ng-repeat="category in story.category track by $index" >
+							<li><a href="single.html">{{category}}</a></li>
+						</ul>
+					</div>
+					<div class="recentSnippet">
+						<h3>Recent Snippets</h3>
+						<ul ng-repeat="snippet in story.snippet track by $index">
+							<li><a href="single.html">{{story.title}}</a> {{snippet}}</li>
+						</ul>
+					</div>
+					<div class="allSnippets">
+						<a href="#" role="button" ng-onCLick="story.recentSnippets()">All Snippets</a>
+					</div>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+         <div ng-show="story.recentSnippet" class="snippet snip-txt">
+            <h3>Related Posts</h3>
+            <div class="snippet-grids">
+               <div class="snippet-grid">
+                  <a href="#"><img src="images/5.jpg" alt=" " /></a>
+                  <h4><a href="#">Maecenas pulvinar</a></h4>
+                  <p>Nunc pulvinar augue non felis dictum ultricies. Donec lacinia,
+                     enim sit amet volutpat sodales, lorem velit fringilla metus, et
+                     semper metus sapien non odio. Nulla facilisi.</p>
+               </div>
+               <div class="snippet-grid">
+                  <a href="#"><img src="images/7.jpg" alt=" " /></a>
+                  <h4><a href="#">Maecenas pulvinar</a></h4>
+                  <p>Nunc pulvinar augue non felis dictum ultricies. Donec lacinia,
+                     enim sit amet volutpat sodales, lorem velit fringilla metus, et
+                     semper metus sapien non odio. Nulla facilisi.</p>
+               </div>
+               <div class="snippet-grid">
+                  <a href="#"><img src="images/6.jpg" alt=" " /></a>
+                  <h4><a href="#">Maecenas pulvinar</a></h4>
+                  <p>Nunc pulvinar augue non felis dictum ultricies. Donec lacinia,
+                     enim sit amet volutpat sodales, lorem velit fringilla metus, et
+                     semper metus sapien non odio. Nulla facilisi.</p>
+               </div>
+               <div class="snippet-grid">
+                  <a href="#"><img src="images/8.jpg" alt=" " /></a>
+                  <h4><a href="#">Maecenas pulvinar</a></h4>
+                  <p>Nunc pulvinar augue non felis dictum ultricies. Donec lacinia,
+                     enim sit amet volutpat sodales, lorem velit fringilla metus, et
+                     semper metus sapien non odio. Nulla facilisi.</p>
+               </div>
+               <div class="clearfix"> </div>
+            </div>
+            <div class="snippet-grids">
+               <div class="snippet-grid">
+                  <a href="#"><img src="images/6.jpg" alt=" " /></a>
+                  <h4><a href="#">Maecenas pulvinar</a></h4>
+                  <p>Nunc pulvinar augue non felis dictum ultricies. Donec lacinia,
+                     enim sit amet volutpat sodale.</p>
+               </div>
+               <div class="snippet-grid">
+                  <a href="#"><img src="images/8.jpg" alt=" " /></a>
+                  <h4><a href="#">Maecenas pulvinar</a></h4>
+                  <p>Nunc pulvinar augue non felis dictum ultricies. Donec lacinia,
+                     enim sit amet volutpat sodales.</p>
+               </div>
+               <div class="snippet-grid">
+                  <a href="#"><img src="images/5.jpg" alt=" " /></a>
+                  <h4><a href="#">Maecenas pulvinar</a></h4>
+                  <p>Nunc pulvinar augue non felis dictum ultricies. Donec lacinia,
+                     enim sit amet volutpat sodale.</p>
+               </div>
+               <div class="snippet-grid">
+                  <a href="#"><img src="images/7.jpg" alt=" " /></a>
+                  <h4><a href="#">Maecenas pulvinar</a></h4>
+                  <p>Nunc pulvinar augue non felis dictum ultricies. Donec lacinia,
+                     enim sit amet volutpat sodale.</p>
+               </div>
+               <div class="clearfix"> </div>
+            </div>
+         </div>
+      </div>
+		</div>
    </div>
+</div>
+   <footer>
+      <h5 class="spanright">Images by: Charlotte "Lotte" Reiniger (2 June 1899 – 19 June 1981)</h5><h5 class="spanleft">Made with &hearts; by Soniya Jassal &copy; 2017 GA WDIR Hopper Cohort</h5>
+   </footer>
 
 </body>
 </html>
