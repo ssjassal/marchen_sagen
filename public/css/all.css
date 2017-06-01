@@ -71,11 +71,9 @@ aside{
    border-radius:15px;
    overflow: auto;
 }
-/*=========STORY BODY CSS=========*/
 .title{
 	float:left;
    margin-top: 1%;
-	width: 75%
 }
 .title h3{
 	margin:0 0 .8em;
@@ -97,7 +95,7 @@ aside{
 	color:#ADADAD;
 }
 .title-grid img{
-	width:50%;
+	width:100%;
 	border:8px solid #787A7A;
 	box-shadow: 0px 1px 8px #ADADAD;
 	border-radius:10px;
@@ -109,9 +107,6 @@ aside{
 .title-grid p{
 	margin:1em 0 0;
 }
-.divide{
-	border-bottom:1px dashed #E1DDD3;
-}
 .member{
 	float:right;
    font-family: 'Philosopher', sans-serif;
@@ -119,6 +114,7 @@ aside{
 }
 .member p{
 	margin:0;
+
 }
 .member p a{
 	font-size:14px;
@@ -126,6 +122,7 @@ aside{
 	font-weight:600;
 	font-style:italic;
 	text-decoration:none;
+
 }
 .member p a:hover{
 	text-decoration:none;
@@ -137,6 +134,7 @@ aside{
 	margin-left: -1px;
 	font-style:normal;
 	font-weight: 600;
+
 }
 p.description{
 	font-size: 150%;
@@ -161,89 +159,9 @@ p.storyText{
 }
 .add{
 	margin:0em 0 2em;
-	/*padding-left: 40em;*/
+	padding-left: 40em;
    font-family: 'Philosopher', sans-serif;
 }
-/*=========CREATE STORY CSS=========*/
-.storyForm input[type="text"],.storyForm2 textarea{
-	outline:none;
-	border:1px solid #f5f5f5;
-	background:none;
-	color:#fff;
-	font-size:14px;
-	padding:13px 10px;
-	border-radius:5px;
-	-webkit-border-radius:5px;
-	-moz-border-radius:5px;
-	-o-border-radius:5px;
-	-ms-border-radius:5px;
-	float:left;
-	width:75%;
-	margin:1em 0;
-}
-.storyForm2{
-	float:left;
-	width:75%;
-}
-.storyForm2 textarea{
-	resize:none;
-	min-height:230px;
-	margin-bottom:2em;
-	/*float:left;
-	width:50%;*/
-}
-.submitBtn input[type="submit"]{
-	outline:none;
-	border:none;
-	background: #CBCAC7;
-	color: #000;
-	font-weight: 600;
-	font-size:18px;
-	padding:15px 0px;
-	width:20%;
-	display:block;
-	border-radius:5px;
-	-webkit-border-radius:5px;
-	-moz-border-radius:5px;
-	-o-border-radius:5px;
-	-ms-border-radius:5px;
-	transition:0.5s all;
-	-webkit-transition:0.5s all;
-	-moz-transition:0.5s all;
-	-o-transition:0.5s all;
-	-ms-transition:0.5s all;
-}
-.submitBtn input[type="submit"]:hover{
-	background:#000;
-	color:#CBCAC7;
-}
-.submitBtn2 input[type="submit"]{
-	outline:none;
-	border:none;
-	background: #CBCAC7;
-	color: #000;
-	font-weight: 600;
-	font-size:18px;
-	padding:15px 0px;
-	width:30%;
-	height: 8%;
-	display:block;
-	border-radius:5px;
-	-webkit-border-radius:5px;
-	-moz-border-radius:5px;
-	-o-border-radius:5px;
-	-ms-border-radius:5px;
-	transition:0.5s all;
-	-webkit-transition:0.5s all;
-	-moz-transition:0.5s all;
-	-o-transition:0.5s all;
-	-ms-transition:0.5s all;
-}
-.submitBtn2 input[type="submit"]:hover{
-	background:#000;
-	color:#CBCAC7;
-}
-/*=========SNIPPET CSS=========*/
 .snippet{
 	padding:2em 0 0;
 }
@@ -255,7 +173,6 @@ p.storyText{
 	font-family: 'Philosopher', sans-serif;
 	font-weight: 600;
 	border-bottom:1px dashed #E1DDD3;
-	width: 70%;
 }
 .snippet-grids{
 	padding:1em 0 0;
@@ -265,12 +182,14 @@ p.storyText{
 	justify-content:center;
 	align-items: center;
 	flex-wrap: wrap;
-	flex-direction: column;
 	float:left;
-	width:30%;
+	width:25%;
 	box-shadow:2px 0px 9px #ADADAD;
-	margin: 2rem;
+	margin: 3rem;
 	margin-left: 5rem;
+}
+.divide{
+	border-bottom:1px dashed #E1DDD3;
 }
 /*.snippet-grid img{
 	width:150%;
@@ -283,16 +202,13 @@ p.storyText{
 	font-weight:600;
 	font-family: 'Philosopher', sans-serif;
 	font-style: normal;
-	text-align: center;
 }
 .snippet-grid h4 a:hover{
 	text-decoration:none;
    color: #000;
-	text-align: center;
 }
 .snippet-grid h4{
 	margin:.5em 0;
-
 }
 .snippet-grid p{
 	margin:0;
@@ -301,10 +217,33 @@ p.storyText{
 	line-height:22px;
 	font-family: 'Philosopher', sans-serif;
 	font-style: normal;
-	padding: 2rem;
-	height: 30%;
-	text-align: center;
+	padding: 3rem;
+	height: 30%
 }
+/*.snippet-grid:nth-child(2){
+	margin:0 1.5em;
+}
+.snippet-grid:nth-child(3){
+	margin-right:1.5em;
+}
+.snippet-grid:nth-child(4){
+	margin-right:1.5em;
+}
+.snippet-grid:nth-child(5){
+	margin-right:1.5em;
+}
+.snippet-grid:nth-child(6){
+	margin-right:1.5em;
+}
+.snippet-grid:nth-child(7){
+	margin-right:1.5em;
+}
+.snippet-grid:nth-child(8){
+	margin-right:1.5em;
+}*/
+/*.snippet-grids:nth-child(2){
+	margin:1em 0 0;
+}*/
 .snip-txt{
 	position: absolute !important;
 	top:-6% !important;
@@ -397,6 +336,7 @@ p.storyText{
 	display:block;
 }
 .allSnippets a:hover{
+	color:#47443A;
 	/*background:url(../images/1-.png) no-repeat 5em .5em;*/
 	display:block;
 }

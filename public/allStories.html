@@ -32,7 +32,7 @@
    <link href="https://fonts.googleapis.com/css?family=Clicker+Script" rel="stylesheet">
    <link href="https://fonts.googleapis.com/css?family=Philosopher" rel="stylesheet">
    <!--Main Stylesheet-->
-   <link rel="stylesheet" href="./css/app.css">
+   <link rel="stylesheet" href="./css/all.css">
    <!--App-->
    <!-- <script>
    $(function(){
@@ -60,8 +60,8 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a ng-click="BodyOfWork.goHome()" href="#">Home</a></li>
-            <li><a ng-click="BodyOfWork.createStories()" href="#">Create Story</a></li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#about">Recent Stories</a></li>
             <li><a href="#contact">Members</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
@@ -84,89 +84,31 @@
             <div class="categoryBorder">
                <div class="categoryStyle">
                   <h3>Categories</h3>
-                  <ul ng-repeat="category in BodyOfWork.categories track by $index" >
-                     <li><a href="single.html">{{category.category}}</a></li>
+                  <ul ng-repeat="category in story.category track by $index" >
+                     <li><a href="single.html">{{category}}</a></li>
                   </ul>
                </div>
                <div class="recentSnippet">
                   <h3>Recent Snippets</h3>
-                  <ul ng-repeat="snippet in BodyOfWork.recentSnippets track by $index" ng-if="$index < 5">
-                     <li><a href="single.html">{{BodyOfWork.snippetTitle[$index]}}</a><br> {{snippet.snip}}</li>
+                  <ul ng-repeat="snippet in story.snippet track by $index">
+                     <li><a href="single.html">{{story.title}}</a> {{snippet}}</li>
                   </ul>
                </div>
                <div class="allSnippets">
-                  <a href="#" role="button" ng-cLick="BodyOfWork.showSnippets()">All Snippets</a>
+                  <a href="#" role="button" ng-onCLick="story.recentSnippets()">All Snippets</a>
                </div>
             </div>
          </div>
-			<div ng-hide="BodyOfWork.allStories" ng-repeat="story in BodyOfWork.stories track by $index" class="title">
-				<div class="title">
-					<h3><a href="single.html">{{story.title}}</a></h3>
-				</div>
-            <div >
-               <p class="member"><a href="#">{{story.author}}</a><br><span>{{story.date}}</span></p>
-            </div>
-				<div class="clearfix"> </div>
-				<div class="title-grid">
-					<a href="#"><img src="{{story.img}}"/></a>
-					<p class="description">{{story.description}}</p>
-					<p class="storyText">{{BodyOfWork.mergedContentArray[$index]}}</p>
-				</div>
-				<div class="add">
-               <div class="submitBtn2">
-                  <input ng-click="BodyOfWork.addSnippets($index)" type="submit" value="Add to Story">
-               </div>
-				</div>
-            <div>
-               <p class="divide"></p>
-            </div>
-            <div>
-               <p class="divide"></p>
-            </div>
-			</div>
-         <div  ng-show="BodyOfWork.addSnippet" class="snippet">
-            <h3>Create Snippet</h3>
-            <div class="snippetForm">
-                  <label>Story Title: </label><p>{{BodyOfWork.title}}</p><br>
-                  <label>Story Description: </label><p>{{BodyOfWork.description}}</p><br>
-                  <label>Story Category: </label><p>{{BodyOfWork.storyCategory}}</p><br>
-                  <label>Story Image URL </label><p>{{BodyOfWork.img}}</p><br>
-               <form>
-                  <div class="storyForm2">
-                     <textarea ng-model="BodyOfWork.snippet" class="storyContent" placeholder="Message:" required=" "></textarea><br>
-                  </div>
-                  <div class="submitBtn">
-                     <input ng-click="BodyOfWork.newSnippet()" type="submit" value="SUBMIT">
-                  </div>
-               </form>
-            </div>
-         </div>
-         <div ng-show="BodyOfWork.recentSnippet" class="snippet">
+			<div class="clearfix"> </div>
+         <div class="snippet">
             <h3>All Snippets</h3>
             <div class="snippet-grids">
-               <div ng-repeat="snippets in BodyOfWork.snippets track by $index" class="snippet-grid">
+               <div ng-repeat="snippets in BodyOfWork.snippets" class="snippet-grid">
                   <h4><a href="#">{{BodyOfWork.allSnippetsTitle[$index]}}</a></h4>
                   <p>{{snippets.snip}}</p>
                </div>
                <!-- <div class="clearfix"> </div> -->
             </div>
-         </div>
-         <div ng-show="BodyOfWork.createStory" class="snippet">
-            <h3>Create Story</h3>
-            <div class="storyForm">
-   				<form>
-   					<input type="text" ng-model="BodyOfWork.title" placeholder="Title:" required=" "><br>
-   					<input type="text" ng-model="BodyOfWork.description" placeholder="Description:" required=" "><br>
-                  <input type="text" ng-model="BodyOfWork.category" placeholder="Category:" required=" "><br>
-                  <input type="text" ng-model="BodyOfWork.image" placeholder="Image URL:" required=" "><br>
-                  <div class="storyForm2">
-      					<textarea ng-model="BodyOfWork.content" class="storyContent" placeholder="Message:" required=" "></textarea><br>
-                  </div>
-                  <div class="submitBtn">
-      					<input ng-click="BodyOfWork.newStory()" type="submit" value="SUBMIT">
-                  </div>
-   				</form>
-   			</div>
          </div>
       </div>
 	</div>
