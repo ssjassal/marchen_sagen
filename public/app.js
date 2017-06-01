@@ -4,8 +4,8 @@ console.clear();
 //================================
 //-----API Domains Dev & Prod-----
 //================================
-var frontend_domain = "http://localhost:8000/";
-var backend_domain = "http://localhost:3000/";
+var frontend_domain = "http://localhost:8000";
+var backend_domain = "http://localhost:3000";
 // var frontend_domain = 'https://shielded-journey-frontend-40635.herokuapp.com/';
 // var backend_domain = 'https://shielded-journey-40635.herokuapp.com/';
 //========================
@@ -33,6 +33,12 @@ app.controller('StoryController', ['$http', function($http){
    this.img = '';
    this.description = '';
    this.storyContent = '';
+   this.story_id = '';
+   this.storyteller_id = '';
+   this.snippet = '';
+   this.index = '';
+   this.mergedContent = '';
+   this.mergedContentArray = [];
    this.categories = [];
    this.snippets = [];
    this.recentSnippets = [];
@@ -61,12 +67,15 @@ app.controller('StoryController', ['$http', function($http){
      console.log(this.addSnippet);
    //   localStorage.setItem('', this.stories);
      this.categories = result.data;
+     this.mergeSnippetToStory();
      this.setRecentSnippetTitle();
+     //console.log('Recent Snippets: ',this.recentSnippets);
    }.bind(this));
 
    //===========================
    //---Story: Create Stories---
    //===========================
+
    this.newStory = function(){
       $http({ // Makes HTTP request to server
         method: 'POST',
@@ -96,9 +105,59 @@ app.controller('StoryController', ['$http', function($http){
      //console.log('Snippets: ',result.data);
    //   console.log(JSON.parse(localStorage.getItem('stories')));
      this.snippets = result.data;
-      //this.recentSnippets = result.data; //if created by is within a certain period time - TBD
    }.bind(this));
 
+   //==================================
+   //----Story: Create New Snippets----
+   //==================================
+
+   this.newSnippet = function(){
+      // console.log(this.index);
+      // console.log(this.stories[this.index].id);
+      this.story_id = this.stories[this.index].id;
+      this.snippet = this.snippet.toString();
+      //console.log(this.snippet);
+      // console.log(this.stories[index].id);
+      // this.storyteller_id = this.storytellers //need storyteller id passed
+      $http({ // Makes HTTP request to server
+        method: 'POST',
+        url: backend_domain + '/snippets',
+        data: {
+          snippet: { // Gets turned into req.body
+           story_id: this.story_id,
+           snip: this.snippet,
+           storyteller_id: 2
+          }
+        }
+      }).then(function(response) {
+         window.location.href = frontend_domain + '/storyapp.html';
+        //console.log(response);
+      }.bind(this));
+
+   }
+   //==============================================
+   //---Story: Function Set Recent Snippet Title---
+   //==============================================
+   this.mergeSnippetToStory = function(){
+      //console.log(this.stories);
+      //console.log('Merge Snippet');
+      for (var i = 0; i < this.stories.length; i++) {
+         this.mergedContent = this.stories[i].content;
+         //console.log('Merged Content: ' + this.mergedContent);
+         if(this.stories[i].snippets.length != 0){
+            //console.log('Story Content: ', this.stories[i].content);
+            //console.log('Snippets', this.stories[i].snippets);
+            var snipLength = 0;
+            snipLength = this.stories[i].snippets.length;
+            for (var j = 0; j < snipLength; j++) {
+               this.mergedContent += " " + this.stories[i].snippets[j].snip;
+            }
+         }
+         this.mergedContentArray.push(this.mergedContent);
+         //console.log('Merged Content Array: ' + this.mergedContentArray);
+         //console.log('Merged Content Array 3: ' + this.mergedContentArray[3]);
+      }
+   }
    //==============================================
    //---Story: Function Set Recent Snippet Title---
    //==============================================
@@ -106,9 +165,24 @@ app.controller('StoryController', ['$http', function($http){
       //console.log('This.Snippets: ',this.snippets);
     //   this.setSnippetTitle();
       //console.log('This.Stories: ', this.stories);
-      for (var i = this.snippets.length - 1; i > (this.snippets.length - 6) ; i--) {
-             this.recentSnippets.push(this.snippets[i]);
-             //console.log('Recent Snippets: ',this.recentSnippets);
+      //CHECK FOR THIS.SNIPPETS.LENGTH IS LESS THAN 6-Need to verify
+      if (this.snippets.length >= 6){
+         for (var i = this.snippets.length - 1; i > (this.snippets.length - 6) ; i--) {
+               // console.log('i: ', i);
+               //console.log('Snippets: ', this.snippets[i]);
+                this.recentSnippets.push(this.snippets[i]);
+               // console.log('Recent Snip: ', this.recentSnippets);
+               // console.log('Recent Snip: ', this.recentSnippets[]);
+         }
+      }else{
+         for (var i = 0 ; i <= this.snippets.length ; i++) {
+               // console.log('i: ', i);
+               //console.log('Snippets: ', this.snippets[i]);
+                this.recentSnippets.push(this.snippets[i]);
+                this.recentSnippets = this.recentSnippets.reverse();
+               // console.log('Recent Snip: ', this.recentSnippets);
+               // console.log('Recent Snip: ', this.recentSnippets[]);
+         }
       }
       for (var i = 0; i < this.recentSnippets.length; i++) {
           //console.log('In FOR loop', i);
@@ -143,8 +217,8 @@ app.controller('StoryController', ['$http', function($http){
    //---Story: Function Display All Snippets---
    //==========================================
    this.displaySnippets = function(){
-      console.log('Snips: ',this.snippets);
-      console.log('Stories: ', this.stories);
+      //console.log('Snips: ',this.snippets);
+      //console.log('Stories: ', this.stories);;
 
       for (var i = 0; i < this.snippets.length; i++) {
           //console.log('In FOR loop', i);
@@ -160,34 +234,43 @@ app.controller('StoryController', ['$http', function($http){
           }
        }
    }
-
-   this.addSnippets = function(){
+   //======================================
+   //---Story: Function Add New Snippets---
+   //======================================
+   this.addSnippets = function(index){
+      // console.log(index);
+      // console.log('title: ', this.stories[index].title);
+      // console.log('description: ', this.stories[index].description);
+      // console.log('category: ', this.stories[index].category);
+      // console.log('image: ', this.stories[index].img);
+      this.index = index;
+      this.title = this.stories[index].title;
+      this.description = this.stories[index].description;
+      this.storyCategory = this.stories[index].category;
+      this.img = this.stories[index].img;
       this.addSnippet = true;
-      console.log(this.addSnippet);
+      //console.log(this.addSnippet);
       this.allStories = true;
    }
+
+   //=========================================
+   //---Story: Function Return to Home Page---
+   //=========================================
    this.goHome = function(){
       this.recentSnippet = false;  //show
       this.allStories = false; //hide
       this.createStory = false;
    }
 
+   //======================================
+   //---Story: Function Create New Story---
+   //======================================
    this.createStories = function(){
       this.createStory = true;
       this.allStories = true;
       this.recentSnippet = false; //show form
    }
 
-   this.setIndex = function(index){
-      console.log('tile: ', this.story[index].title);
-      console.log('tile: ', this.story[index].description);
-      console.log('tile: ', this.story[index].category);
-      console.log('tile: ', this.story[index].img);
-      this.title = this.story[index].title;
-      this.description = this.story[index].description;
-      this.storyCategory = this.story[index].category;
-      this.img = this.story[index].img;
 
-   }
 
 }]);

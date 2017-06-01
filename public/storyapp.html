@@ -90,7 +90,7 @@
                </div>
                <div class="recentSnippet">
                   <h3>Recent Snippets</h3>
-                  <ul ng-repeat="snippet in BodyOfWork.snippets track by $index" ng-if="$index < 5">
+                  <ul ng-repeat="snippet in BodyOfWork.recentSnippets track by $index" ng-if="$index < 5">
                      <li><a href="single.html">{{BodyOfWork.snippetTitle[$index]}}</a><br> {{snippet.snip}}</li>
                   </ul>
                </div>
@@ -110,10 +110,12 @@
 				<div class="title-grid">
 					<a href="#"><img src="{{story.img}}"/></a>
 					<p class="description">{{story.description}}</p>
-					<p class="storyText">{{story.content}}</p>
+					<p class="storyText">{{BodyOfWork.mergedContentArray[$index]}}</p>
 				</div>
 				<div class="add">
-					<a ng-click="BodyOfWork.addSnippets()" ng-init="BodyOfWork.setIndex($index)" href="#">Add to the Story</a>
+               <div class="submitBtn2">
+                  <input ng-click="BodyOfWork.addSnippets($index)" type="submit" value="Add to Story">
+               </div>
 				</div>
             <div>
                <p class="divide"></p>
@@ -125,10 +127,10 @@
          <div  ng-show="BodyOfWork.addSnippet" class="snippet">
             <h3>Create Snippet</h3>
             <div class="snippetForm">
-                  <p>{{BodyOfWork.title}}</p><br>
-                  <p>{{BodyOfWork.description}}</p><br>
-                  <p>{{BodyOfWork.category}}</p><br>
-                  <p>{{BodyOfWork.img}}</p><br>
+                  <label>Story Title: </label><p>{{BodyOfWork.title}}</p><br>
+                  <label>Story Description: </label><p>{{BodyOfWork.description}}</p><br>
+                  <label>Story Category: </label><p>{{BodyOfWork.storyCategory}}</p><br>
+                  <label>Story Image URL </label><p>{{BodyOfWork.img}}</p><br>
                <form>
                   <div class="storyForm2">
                      <textarea ng-model="BodyOfWork.snippet" class="storyContent" placeholder="Message:" required=" "></textarea><br>
@@ -142,7 +144,7 @@
          <div ng-show="BodyOfWork.recentSnippet" class="snippet">
             <h3>All Snippets</h3>
             <div class="snippet-grids">
-               <div ng-repeat="snippets in BodyOfWork.snippets" class="snippet-grid">
+               <div ng-repeat="snippets in BodyOfWork.snippets track by $index" class="snippet-grid">
                   <h4><a href="#">{{BodyOfWork.allSnippetsTitle[$index]}}</a></h4>
                   <p>{{snippets.snip}}</p>
                </div>
