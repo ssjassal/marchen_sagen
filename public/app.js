@@ -90,7 +90,7 @@ app.controller('StoryController', ['$http', function($http){
           }
         }
       }).then(function(response) {
-        //console.log(response);
+         window.location.href = frontend_domain + '/storyapp.html';
       }.bind(this));
    }
 
