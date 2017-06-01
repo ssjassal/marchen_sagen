@@ -4,10 +4,10 @@ console.clear();
 //================================
 //-----API Domains Dev & Prod-----
 //================================
-//var frontend_domain = "http://localhost:8000";
-// var backend_domain = "http://localhost:3000";
-var frontend_domain = 'https://still-fortress-frontend-94098.herokuapp.com/';
-var backend_domain = 'https://still-fortress-94098.herokuapp.com';
+var frontend_domain = "http://localhost:8000";
+var backend_domain = "http://localhost:3000";
+// var frontend_domain = 'https://still-fortress-frontend-94098.herokuapp.com/';
+// var backend_domain = 'https://still-fortress-94098.herokuapp.com'; //https://still-fortress-94098.herokuapp.com/
 //========================
 //-----Angular Module-----
 //========================
@@ -38,6 +38,11 @@ app.controller('StoryController', ['$http', function($http){
    this.snippet = '';
    this.index = '';
    this.mergedContent = '';
+   this.storyTitle = '';
+   this.storyDescription = '';
+   this.storyImg = '';
+   this.storyStory = '';
+   this.viewStoryIndex = '';
    this.mergedContentArray = [];
    this.categories = [];
    this.snippets = [];
@@ -50,6 +55,7 @@ app.controller('StoryController', ['$http', function($http){
    this.recentSnippet = false;
    this.allStories = false;
    this.addSnippet = false;
+   this.viewStory = false;
 
    //==============================
    //----Story: Get All Stories----
@@ -114,7 +120,11 @@ app.controller('StoryController', ['$http', function($http){
    this.newSnippet = function(){
       // console.log(this.index);
       // console.log(this.stories[this.index].id);
-      this.story_id = this.stories[this.index].id;
+      if(this.viewStoryIndex != ''){
+         this.story_id = this.stories[this.viewStoryIndex].id;
+      }else{
+         this.story_id = this.stories[this.index].id;
+      }
       this.snippet = this.snippet.toString();
       //console.log(this.snippet);
       // console.log(this.stories[index].id);
@@ -135,9 +145,37 @@ app.controller('StoryController', ['$http', function($http){
       }.bind(this));
 
    }
-   //==============================================
-   //---Story: Function Set Recent Snippet Title---
-   //==============================================
+   //=============================================
+   //----Story: Create New View Story Snippets----
+   //=============================================
+
+   // this.newViewStorySnippet = function(index){
+   //    // console.log(this.index);
+   //    // console.log(this.stories[this.index].id);
+   //    this.story_id = this.stories[index].id;
+   //    this.snippet = this.snippet.toString();
+   //    //console.log(this.snippet);
+   //    // console.log(this.stories[index].id);
+   //    // this.storyteller_id = this.storytellers //need storyteller id passed
+   //    $http({ // Makes HTTP request to server
+   //      method: 'POST',
+   //      url: backend_domain + '/snippets',
+   //      data: {
+   //        snippet: { // Gets turned into req.body
+   //         story_id: this.story_id,
+   //         snip: this.snippet,
+   //         storyteller_id: 2
+   //        }
+   //      }
+   //    }).then(function(response) {
+   //       window.location.href = frontend_domain + '/storyapp.html';
+   //      //console.log(response);
+   //    }.bind(this));
+   //
+   // }
+   //=========================================
+   //---Story: Function Merge Snippet Story---
+   //=========================================
    this.mergeSnippetToStory = function(){
       //console.log(this.stories);
       //console.log('Merge Snippet');
@@ -252,6 +290,24 @@ app.controller('StoryController', ['$http', function($http){
       //console.log(this.addSnippet);
       this.allStories = true;
    }
+   //================================================
+   //---Story: Function Add New View Story Snippet---
+   //================================================
+   this.viewStorySnippets = function(){
+      // console.log(index);
+      // console.log('title: ', this.stories[index].title);
+      // console.log('description: ', this.stories[index].description);
+      // console.log('category: ', this.stories[index].category);
+      // console.log('image: ', this.stories[index].img);
+
+      this.title = this.stories[this.viewStoryIndex].title;
+      this.description = this.stories[this.viewStoryIndex].description;
+      this.storyCategory = this.stories[this.viewStoryIndex].category;
+      this.img = this.stories[this.viewStoryIndex].img;
+      this.addSnippet = true;
+      //console.log(this.addSnippet);
+      this.allStories = true;
+   }
 
    //=========================================
    //---Story: Function Return to Home Page---
@@ -271,6 +327,30 @@ app.controller('StoryController', ['$http', function($http){
       this.recentSnippet = false; //show form
    }
 
+   //================================
+   //---Story: Function View Story---
+   //================================
+   this.viewStory= function(index){
+      // console.log('View Story Index: ', index)
+      // console.log(this.stories[index].title);
+      this.viewStoryIndex = index;
+      this.storyTitle = this.stories[index].title;
+      this.storyDescription = this.stories[index].description;
+      this.storyImg = this.stories[index].img;
+      this.viewStoryContent = this.stories[index].content;
 
+      //console.log('Merged Content: ' + this.mergedContent);
+      if(this.stories[index].snippets.length != 0){
+         //console.log('Story Content: ', this.stories[i].content);
+         //console.log('Snippets', this.stories[i].snippets);
+         var snip_Length = 0;
+         snip_Length = this.stories[index].snippets.length;
+         for (var j = 0; j < snip_Length; j++) {
+            this.viewStoryContent += " " + this.stories[index].snippets[j].snip;
+         }
+      }
+      this.viewStory = true;
+      this.allStories = true;
+   }
 
 }]);

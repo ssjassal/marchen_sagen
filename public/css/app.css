@@ -28,7 +28,7 @@ body{
    /*background-repeat: no-repeat;*/
    /*background-position: left top;*/
    background-size: 25%;
-   background-color: #B6B7B7;
+   background-color: #000;
    display: flex;
    min-height: 100vh;
    flex-direction: column;
@@ -338,17 +338,13 @@ p.storyText{
 	border-bottom: 1px dashed #F2EFED;
 	margin-bottom: 1em;
 }
-.categoryStyle ul li a{
+.categoryStyle ul li{
 	font-size:13px;
 	color:#F2EFED;
 	text-decoration:none;
 	font-family: 'Philosopher', sans-serif;
 	font-weight: 600;
 	}
-.categoryStyle ul li a:hover{
-	text-decoration:none;
-	color:#000;
-}
 .recentSnippet h3{
 	color:#F2EFED;
 	font-size: 26px;
@@ -404,24 +400,27 @@ p.storyText{
 
 header{
    display: flex;
-   justify-content: flex-start;
-   margin-top: 3%;
+   justify-content: center;
+	align-items: baseline;
+   margin-top: 2%;
    padding: 1%;
    width: 100%;
    order: -2;
    text-align: center;
    background-color: rgba(64,65,65,0.75);
-   background:url(../images/header.png) no-repeat -10em 0em;
+   background:url(../images/header.png) no-repeat center;
    min-height:200px;
 }
 h3{
    color: #000;
    font-size: 280%;
    /*text-align: center;*/
+	margin-top: 25%;
 }
 h4
 {
    color: #000;
+	/*text-align: center;*/
 }
 .headerTitle{
 }
