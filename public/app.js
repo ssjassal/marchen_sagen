@@ -47,6 +47,8 @@ app.controller('StoryController', ['$http', function($http){
    this.storyImg = '';
    this.storyStory = '';
    this.viewStoryIndex = '';
+   this.author = {};
+   this.userPass = {};
    this.mergedContentArray = [];
    this.categories = [];
    this.snippets = [];
@@ -92,6 +94,7 @@ app.controller('StoryController', ['$http', function($http){
      //console.log('Snippets: ',result.data);
    //   console.log(JSON.parse(localStorage.getItem('stories')));
      this.snippets = result.data;
+
    }.bind(this));
 
    //====================================
@@ -113,7 +116,7 @@ app.controller('StoryController', ['$http', function($http){
       }).then(function(response) {
          window.location.href = frontend_domain + '/storyapp.html';
       }.bind(this));
-   }
+   };
 
    //===========================================
    //----Story: Function Create New Snippets----
@@ -121,7 +124,7 @@ app.controller('StoryController', ['$http', function($http){
    this.newSnippet = function(){
       // console.log(this.index);
       // console.log(this.stories[this.index].id);
-      if(this.viewStoryIndex != ''){
+      if(this.viewStoryIndex !== ''){
          this.story_id = this.stories[this.viewStoryIndex].id;
       }else{
          this.story_id = this.stories[this.index].id;
@@ -145,7 +148,7 @@ app.controller('StoryController', ['$http', function($http){
         //console.log(response);
       }.bind(this));
 
-   }
+   };
 
    //=========================================
    //---Story: Function Merge Snippet Story---
@@ -156,7 +159,7 @@ app.controller('StoryController', ['$http', function($http){
       for (var i = 0; i < this.stories.length; i++) {
          this.mergedContent = this.stories[i].content;
          //console.log('Merged Content: ' + this.mergedContent);
-         if(this.stories[i].snippets.length != 0){
+         if(this.stories[i].snippets.length !== 0){
             //console.log('Story Content: ', this.stories[i].content);
             //console.log('Snippets', this.stories[i].snippets);
             var snipLength = 0;
@@ -169,7 +172,7 @@ app.controller('StoryController', ['$http', function($http){
          //console.log('Merged Content Array: ' + this.mergedContentArray);
          //console.log('Merged Content Array 3: ' + this.mergedContentArray[3]);
       }
-   }
+   };
 
    //==============================================
    //---Story: Function Set Recent Snippet Title---
@@ -188,31 +191,30 @@ app.controller('StoryController', ['$http', function($http){
                // console.log('Recent Snip: ', this.recentSnippets[]);
          }
       }else{
-         for (var i = 0 ; i <= this.snippets.length ; i++) {
+         for (var j = 0 ; j <= this.snippets.length ; j++) {
                // console.log('i: ', i);
                //console.log('Snippets: ', this.snippets[i]);
-                this.recentSnippets.push(this.snippets[i]);
+                this.recentSnippets.push(this.snippets[j]);
                 this.recentSnippets = this.recentSnippets.reverse();
                // console.log('Recent Snip: ', this.recentSnippets);
                // console.log('Recent Snip: ', this.recentSnippets[]);
          }
       }
-      for (var i = 0; i < this.recentSnippets.length; i++) {
+      for (var k = 0; k < this.recentSnippets.length; k++) {
           //console.log('In FOR loop', i);
-          for (var j = 0; j < this.stories.length; j++) {
+          for (var l = 0; l < this.stories.length; l++) {
              //console.log('In second FOR loop', j);
              //console.log('Recent Snippet Story ID ', this.recentSnippets[i].story_id );
              //console.log('Stories Story ID ', this.stories[j].id);
-             if (this.recentSnippets[i].story_id === this.stories[j].id){
+             console.log('Recent Snippet of l ', this.recentSnippets[k].story_id );
+             if (this.recentSnippets[k].story_id === this.stories[l].id){
                  //console.log('In IF statement [i], [j], storytitle', i,j,this.stories[i].title);
-                 this.snippetTitle.push(this.stories[j].title);
+                 this.snippetTitle.push(this.stories[l].title);
                  //console.log('Snippet Title after push: ',this.snippetTitle);
              }
-
           }
-
        }
-   }
+   };
 
    //=======================================
    //---Story: Function Show All Snippets---
@@ -226,7 +228,7 @@ app.controller('StoryController', ['$http', function($http){
       this.createStory = false;
       // console.log('allStories: '+ this.allStories);
       this. displaySnippets();
-   }
+   };
 
    //==========================================
    //---Story: Function Display All Snippets---
@@ -248,7 +250,7 @@ app.controller('StoryController', ['$http', function($http){
              }
           }
        }
-   }
+   };
 
    //======================================
    //---Story: Function Add New Snippets---
@@ -267,7 +269,8 @@ app.controller('StoryController', ['$http', function($http){
       this.addSnippet = true;
       //console.log(this.addSnippet);
       this.allStories = true;
-   }
+   };
+
    //================================================
    //---Story: Function Add New View Story Snippet---
    //================================================
@@ -285,7 +288,7 @@ app.controller('StoryController', ['$http', function($http){
       this.addSnippet = true;
       //console.log(this.addSnippet);
       this.allStories = true;
-   }
+   };
 
    //=========================================
    //---Story: Function Return to Home Page---
@@ -294,7 +297,7 @@ app.controller('StoryController', ['$http', function($http){
       this.recentSnippet = false;  //show
       this.allStories = false; //hide
       this.createStory = false;
-   }
+   };
 
    //======================================
    //---Story: Function Create New Story---
@@ -303,7 +306,7 @@ app.controller('StoryController', ['$http', function($http){
       this.createStory = true;
       this.allStories = true;
       this.recentSnippet = false; //show form
-   }
+   };
 
    //================================
    //---Story: Function View Story---
@@ -318,7 +321,7 @@ app.controller('StoryController', ['$http', function($http){
       this.viewStoryContent = this.stories[index].content;
 
       //console.log('Merged Content: ' + this.mergedContent);
-      if(this.stories[index].snippets.length != 0){
+      if(this.stories[index].snippets.length !== 0){
          //console.log('Story Content: ', this.stories[i].content);
          //console.log('Snippets', this.stories[i].snippets);
          var snip_Length = 0;
@@ -329,49 +332,100 @@ app.controller('StoryController', ['$http', function($http){
       }
       this.viewStory = true;
       this.allStories = true;
-   }
+   };
 
    //=======================================
    //----Storyteller: Create Storyteller----
    //=======================================
    this.createStoryteller = function(author){
 
-     console.log('create new storyteller');
-     console.log(author.username);
-     console.log(author.password);
-     console.log(author.name);
-     // console.log(this.email);
-     // console.log(this.img);
-       if((this.username == '') ||
-          (this.username == 'undefined')||
-          (this.name == '') ||
-          (this.name == 'undefined') ||
-          (this.password == '') ||
-          (this.password == 'undefined')){
-          this.isRegistered = false;
-          this.createStorytellerMessage = "Your registration is incomplete";
-          return;
-       }
+   //   console.log('create new storyteller');
+   //   console.log(author.username);
+   //   console.log(author.password);
+   //   console.log(author.name);
+   //   // console.log(this.email);
+   //   // console.log(this.img);
+   //    //  if((this.username == '') ||
+   //    //     (this.username == 'undefined')||
+   //    //     (this.name == '') ||
+   //    //     (this.name == 'undefined') ||
+   //    //     (this.password == '') ||
+   //    //     (this.password == 'undefined')){
+   //    //     this.isRegistered = false;
+   //    //     this.createStorytellerMessage = "Your registration is incomplete";
+   //    //     return;
+   //    //  }
 
         $http({ // Makes HTTP request to server
           method: 'POST',
           url: backend_domain + '/storytellers',
           data: { // Gets turned into req.body
-            username: author.username,
-            name: author.name,
-            img: author.img,
-            password: author.password,
-            email: author.email,
+             storyteller: {
+               username: author.username,
+               name: author.name,
+               img: author.img,
+               password: author.password,
+               email: author.email
+             }
           }
         }).then(function(response) {
           console.log(response);
           if(response.status == 201)
           {
+             this.author = response.data.storyteller;
              window.location.href = frontend_domain; //"http://localhost:8000";
           }
-      });
-   }
+      }.bind(this));
+   };
 
+   //===================================
+   //----Storyteller: Function Login----
+   //===================================
+   this.loginStoryteller = function(userPass) {
+      console.log(userPass);
+      this.username = userPass.username.toString();
+      this.password = userPass.password.toString();
+     this.appPage = frontend_domain + '/storyapp.html';
+   //   if ((userPass == 'undefined') ||
+   //       (userPass.username == null) ||
+   //       (userPass.username == '') ||
+   //       (userPass.username == 'undefined') ||
+   //       (userPass.password == '') ||
+   //       (userPass.password == 'undefined') ||
+   //       (userPass.password == null)){
+   //          window.location.href = frontend_domain;
+   //          this.logInMessage = 'Invalid Login Attempt, please try again.'
+   //          return;
+   //   }
+
+     $http({ // Makes HTTP request to server
+       method: 'POST',
+       // url: this.domainurl1 + '/players/login',
+       url: backend_domain + '/storytellers/login',
+       data: {
+         storyteller: { // Gets turned into req.body
+           username: this.username,
+           password: this.password
+         }
+       }
+     }).then(function(response) {
+       console.log(response);
+       if(response.data.status == 401){
+         window.location.href = frontend_domain;
+         this.logInMessage = 'Invalid Login Attempt, please try again.';
+      }else
+      {
+         console.log("Logged in");
+         localStorage.clear('token')
+         this.storyteller = response.data.storyteller;
+         localStorage.setItem('token', JSON.stringify(response.data.token));
+         // localStorage.setItem('storytellerId', this.storyteller.id);
+         window.location.href = this.appPage;
+         // console.log(JSON.parse(localStorage.getItem('token')));
+         // this.isLoggedIn = true;
+       }
+     }.bind(this));
+   };
 }]);
 //======================
 //----Graveyard Code----

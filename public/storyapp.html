@@ -85,13 +85,13 @@
                <div class="categoryStyle">
                   <h3>Categories</h3>
                   <ul ng-repeat="category in BodyOfWork.categories track by $index" >
-                     <li><a href="#">{{category.category}}</a></li>
+                     <li>{{category.category}}</li>
                   </ul>
                </div>
                <div class="recentSnippet">
                   <h3>Recent Snippets</h3>
                   <ul ng-repeat="snippet in BodyOfWork.recentSnippets track by $index" ng-if="$index < 5">
-                     <li><a href="#" ng-click="BodyOfWork.viewStory($index)">{{BodyOfWork.snippetTitle[$index]}}</a><br> {{snippet.snip}}</li>
+                     <li><a href="#" ng-click="BodyOfWork.viewStory($index)">{{BodyOfWork.snippetTitle[$index]}}</a><br>{{snippet.snip}}</li>
                   </ul>
                </div>
                <div class="allSnippets">
