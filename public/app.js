@@ -4,8 +4,8 @@ console.clear();
 //================================
 //-----API Domains Dev & Prod-----
 //================================
-var frontend_domain = "http://localhost:8000";
-var backend_domain = "http://localhost:3000";
+var frontend_domain = "http://localhost:8000/";
+var backend_domain = "http://localhost:3000/";
 // var frontend_domain = 'https://still-fortress-frontend-94098.herokuapp.com/';
 // var backend_domain = 'https://still-fortress-94098.herokuapp.com'; //https://still-fortress-94098.herokuapp.com/
 
@@ -15,141 +15,12 @@ var backend_domain = "http://localhost:3000";
 var app = angular.module('MSApp', []);
 
 
-//===============================
-//-----Storyteller Controller----
-//===============================
-app.controller('StorytellerController',['$http',function($http){
-   //====================================
-   //----Storyteller: Initializing Var----
-   //====================================
+// ===============================
+// -----Storyteller Controller----
+// ===============================
+// app.controller('StorytellerController',['$http',function($http){
 
-   this.storyteller = '';
-   this.createStorytellerMessage = '';
-   this.registerErrorMsg = "missing required field(s)"
-   this.username = '';
-   this.password = '';
-   this.email = '';
-   this.img = '';
-   this.name = '';
-   this.storytellers = [];
-   this.isLoggedIn = false;
-   this.isRegistered = true;
-
-   //=====================================
-   //----Storyteller: Get Storytellers----
-   //=====================================
-   this.getStorytellers = function() {
-
-     $http({ // Makes HTTP request to server
-       method: 'GET',
-       url: backend_domain + '/players/',
-       headers: {
-         Authorization: 'Bearer' + JSON.parse(localStorage.getItem('token'))
-       }
-     }).then(function(response) {
-       if(response.data.status == 401) {
-         this.error = "Unauthorized";
-       } else {
-         this.storytellers = resonse.data;
-       }
-     }.bind(this));
-   };
-
-   //=======================================
-   //----Storyteller: Create Storyteller----
-   //=======================================
-   this.createStoryteller = function(){
-
-  console.log('create new player');
-  // console.log(this.username);
-  // console.log(this.password);
-  // console.log(this.name);
-  // console.log(this.email);
-  // console.log(this.img);
-    if((this.username == '') ||
-       (this.username == 'undefined')||
-       (this.name == '') ||
-       (this.name == 'undefined') ||
-       (this.password == '') ||
-       (this.password == 'undefined')){
-       this.isRegistered = false;
-       this.createStorytellerMessage = "Your registration is incomplete";
-       return;
-    }
-
-     $http({ // Makes HTTP request to server
-       method: 'POST',
-       url: backend_domain + '/storytellers',
-       data: { // Gets turned into req.body
-         username: this.username,
-         name: this.name,
-         img: this.img,
-         password: this.password,
-         email: this.email,
-       }
-     }).then(function(response) {
-       console.log(response);
-       if(response.status == 201)
-       {
-          window.location.href = this.indexHtml; "http://localhost:8000";
-       }
-   };
-
-   //===================================
-   //----Storyteller: Function Login----
-   //===================================
-   this.loginStoryteller = function(userPass) {
-      console.log(userPass);
-     this.appPage = frontend_domain + '/storyapp.html';
-     if ((userPass == 'undefined') ||
-         (userPass.username == null) ||
-         (userPass.username == '') ||
-         (userPass.username == 'undefined') ||
-         (userPass.password == '') ||
-         (userPass.password == 'undefined') ||
-         (userPass.password == null)){
-            window.location.href = frontend_domain;
-            this.logInMessage = 'Invalid Login Attempt, please try again.'
-            return;
-     }
-
-     $http({ // Makes HTTP request to server
-       method: 'POST',
-       // url: this.domainurl1 + '/players/login',
-       url: backend_domain + '/players/login',
-       data: {
-         player: { // Gets turned into req.body
-           username: userPass.username,
-           password: userPass.password
-         }
-       }
-     }).then(function(response) {
-       console.log(response);
-       if(response.data.token){
-         console.log("Logged in");
-         this.storyteller = response.data.storyteller;
-         localStorage.setItem('token', JSON.stringify(response.data.token));
-         localStorage.setItem('storytellerId', this.storyteller.id);
-         window.location.href = this.appPage;
-         // console.log(JSON.parse(localStorage.getItem('token')));
-         this.isLoggedIn = true;
-       }
-       else if(response.data.token == 'undefined'){
-         window.location.href = frontend_domain;
-         this.logInMessage = 'Invalid Login Attempt, please try again.'
-       }
-     }.bind(this));
-   };
-
-   //====================================
-   //----Storyteller: Function Logout----
-   //====================================
-   this.logout = function(){
-     localStorage.clear('token');
-     window.location.href = frontend_domain;
-     //location.reload();
-   };
-}]);
+// }]);
 //========================
 //-----Story Controller----
 //========================
@@ -486,3 +357,135 @@ app.controller('StoryController', ['$http', function($http){
 //    }.bind(this));
 //
 // }
+
+//    //====================================
+//    //----Storyteller: Initializing Var----
+//    //====================================
+//
+//    this.storyteller = '';
+//    this.createStorytellerMessage = '';
+//    this.registerErrorMsg = "missing required field(s)"
+//    this.username = '';
+//    this.password = '';
+//    this.email = '';
+//    this.img = '';
+//    this.name = '';
+//    this.storytellers = [];
+//    this.isLoggedIn = false;
+//    this.isRegistered = true
+//
+//    //=====================================
+//    //----Storyteller: Get Storytellers----
+//    //=====================================
+//    this.getStorytellers = function() {
+//
+//      $http({ // Makes HTTP request to server
+//        method: 'GET',
+//        url: backend_domain + '/players/',
+//        headers: {
+//          Authorization: 'Bearer' + JSON.parse(localStorage.getItem('token'))
+//        }
+//      }).then(function(response) {
+//        if(response.data.status == 401) {
+//          this.error = "Unauthorized";
+//        } else {
+//          this.storytellers = resonse.data;
+//        }
+//      }.bind(this));
+//    };
+//
+//    //=======================================
+//    //----Storyteller: Create Storyteller----
+//    //=======================================
+//    this.createStoryteller = function(){
+//
+//   console.log('create new player');
+//   // console.log(this.username);
+//   // console.log(this.password);
+//   // console.log(this.name);
+//   // console.log(this.email);
+//   // console.log(this.img);
+//     if((this.username == '') ||
+//        (this.username == 'undefined')||
+//        (this.name == '') ||
+//        (this.name == 'undefined') ||
+//        (this.password == '') ||
+//        (this.password == 'undefined')){
+//        this.isRegistered = false;
+//        this.createStorytellerMessage = "Your registration is incomplete";
+//        return;
+//     }
+//
+//      $http({ // Makes HTTP request to server
+//        method: 'POST',
+//        url: backend_domain + '/storytellers',
+//        data: { // Gets turned into req.body
+//          username: this.username,
+//          name: this.name,
+//          img: this.img,
+//          password: this.password,
+//          email: this.email,
+//        }
+//      }).then(function(response) {
+//        console.log(response);
+//        if(response.status == 201)
+//        {
+//           window.location.href = frontend_domain; //"http://localhost:8000";
+//        }
+//    });
+//
+//    //===================================
+//    //----Storyteller: Function Login----
+//    //===================================
+//    this.loginStoryteller = function(userPass) {
+//       console.log(userPass);
+//      this.appPage = frontend_domain + '/storyapp.html';
+//      if ((userPass == 'undefined') ||
+//          (userPass.username == null) ||
+//          (userPass.username == '') ||
+//          (userPass.username == 'undefined') ||
+//          (userPass.password == '') ||
+//          (userPass.password == 'undefined') ||
+//          (userPass.password == null)){
+//             window.location.href = frontend_domain;
+//             this.logInMessage = 'Invalid Login Attempt, please try again.'
+//             return;
+//      }
+//
+//      $http({ // Makes HTTP request to server
+//        method: 'POST',
+//        // url: this.domainurl1 + '/players/login',
+//        url: backend_domain + '/players/login',
+//        data: {
+//          player: { // Gets turned into req.body
+//            username: userPass.username,
+//            password: userPass.password
+//          }
+//        }
+//      }).then(function(response) {
+//        console.log(response);
+//        if(response.data.token){
+//          console.log("Logged in");
+//          this.storyteller = response.data.storyteller;
+//          localStorage.setItem('token', JSON.stringify(response.data.token));
+//          localStorage.setItem('storytellerId', this.storyteller.id);
+//          window.location.href = this.appPage;
+//          // console.log(JSON.parse(localStorage.getItem('token')));
+//          this.isLoggedIn = true;
+//        }
+//        else if(response.data.token == 'undefined'){
+//          window.location.href = frontend_domain;
+//          this.logInMessage = 'Invalid Login Attempt, please try again.'
+//        }
+//      }.bind(this));
+//    };
+//
+//    //====================================
+//    //----Storyteller: Function Logout----
+//    //====================================
+//    this.logout = function(){
+//      localStorage.clear('token');
+//      window.location.href = frontend_domain;
+//      //location.reload();
+//    };
+//

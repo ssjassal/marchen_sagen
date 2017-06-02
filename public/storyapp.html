@@ -10,7 +10,7 @@
    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
    crossorigin="anonymous"></script>
    <!--Angular-->
-   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
    <!--CSS Frameworks-->
    <!--Bootstrap required files-->
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -85,7 +85,7 @@
                <div class="categoryStyle">
                   <h3>Categories</h3>
                   <ul ng-repeat="category in BodyOfWork.categories track by $index" >
-                     <li>{{category.category}}</li>
+                     <li><a href="#">{{category.category}}</a></li>
                   </ul>
                </div>
                <div class="recentSnippet">
