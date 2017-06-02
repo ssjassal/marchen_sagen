@@ -6,7 +6,7 @@ console.clear();
 //================================
 // var frontend_domain = "http://localhost:8000/";
 // var backend_domain = "http://localhost:3000/";
-var frontend_domain = 'https://still-fortress-frontend-94098.herokuapp.com/';
+var frontend_domain = 'https://still-fortress-frontend-94098.herokuapp.com';
 var backend_domain = 'https://still-fortress-94098.herokuapp.com'; //https://still-fortress-94098.herokuapp.com/
 
 //========================
