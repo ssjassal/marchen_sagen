@@ -3,7 +3,7 @@
 //=====================================
 var express = require('express');
 var app = express();
-var port = 8000 || process.env.PORT;
+var port = process.env.PORT || 8000;
 
 //=========================
 //---------App Use---------
