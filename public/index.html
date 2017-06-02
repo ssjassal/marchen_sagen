@@ -38,7 +38,6 @@
             <h3 >Mär·chen & Sȯ·gen<br>
                <h4 class="subtitle">"The world where fairytales & legends are born."</h4><br>
                <button class="login btn btn-default btn-lg" data-toggle="modal" data-target="#login">Log In</button>
-               {{2+2}}
                <button class="signup btn btn-default btn-lg" data-toggle="modal" data-target="#signup"> Sign Up</button>
                <h5 class="spanright">Images by: Charlotte "Lotte" Reiniger (2 June 1899 – 19 June 1981)</h5><h5 class="spanleft">Made with &hearts; by Soniya Jassal &copy; 2017 GA WDIR Hopper Cohort</h5></h3>
          </div>
@@ -124,13 +123,13 @@
             <div class="formInput modal-body">
                <form class="modal-body">
                   <div ng-hide="Storyteller.isRegistered" style="color:red">{{Storyteller.createStorytellerMessage}}</div><br>
-                  <input ng-model="Storyteller.name" type="text" placeholder="Name"/><span style="color:red">*</span><br>
-                  <input ng-model="Storyteller.email" type="text" placeholder="Email"/><span style="opacity: 0">*</span><br>
+                  <input ng-model="author.name" type="text" placeholder="Name"/><span style="color:red">*</span><br>
+                  <input ng-model="author.email" type="text" placeholder="Email"/><span style="opacity: 0">*</span><br>
                   <!-- <input type="text" placeholder="Date of Birth"/><br> -->
-                  <input ng-model="Storyteller.img" type="text" placeholder="Image URL"/><span style="opacity: 0">*</span><br>
-                  <input ng-model="Storyteller.username" type="text" placeholder="username"/><span style="color:red">*</span><br>
-                  <input ng-model="Storyteller.password" type="text" placeholder="Password"/><span style="color:red">*</span><br>
-                  <button class="btn btn-default" type="submit" name="button" ng-click="Storyteller.createStoryteller()">Submit</button>
+                  <input ng-model="author.img" type="text" placeholder="Image URL"/><span style="opacity: 0">*</span><br>
+                  <input ng-model="author.username" type="text" placeholder="username"/><span style="color:red">*</span><br>
+                  <input ng-model="author.password" type="text" placeholder="Password"/><span style="color:red">*</span><br>
+                  <button class="btn btn-default" type="submit" name="button" ng-click="Storyteller.createStoryteller(author)">Submit</button>
                </form >
             </div>
             <div class="modal-footer">

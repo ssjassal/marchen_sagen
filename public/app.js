@@ -4,10 +4,10 @@ console.clear();
 //================================
 //-----API Domains Dev & Prod-----
 //================================
-// var frontend_domain = "http://localhost:8000/";
-// var backend_domain = "http://localhost:3000/";
-var frontend_domain = 'https://still-fortress-frontend-94098.herokuapp.com';
-var backend_domain = 'https://still-fortress-94098.herokuapp.com'; //https://still-fortress-94098.herokuapp.com/
+var frontend_domain = "http://localhost:8000";
+var backend_domain = "http://localhost:3000";
+// var frontend_domain = 'https://still-fortress-frontend-94098.herokuapp.com';
+// var backend_domain = 'https://still-fortress-94098.herokuapp.com'; //https://still-fortress-94098.herokuapp.com/
 
 //========================
 //-----Angular Module-----
@@ -19,7 +19,9 @@ var app = angular.module('MSApp', []);
 // -----Storyteller Controller----
 // ===============================
 // app.controller('StorytellerController',['$http',function($http){
-
+//
+//
+//
 // }]);
 //========================
 //-----Story Controller----
@@ -58,6 +60,7 @@ app.controller('StoryController', ['$http', function($http){
    this.allStories = false;
    this.addSnippet = false;
    this.viewStory = false;
+   this.isRegistered = false;
 
    //==============================
    //----Story: Get All Stories----
@@ -326,6 +329,47 @@ app.controller('StoryController', ['$http', function($http){
       }
       this.viewStory = true;
       this.allStories = true;
+   }
+
+   //=======================================
+   //----Storyteller: Create Storyteller----
+   //=======================================
+   this.createStoryteller = function(author){
+
+     console.log('create new storyteller');
+     console.log(author.username);
+     console.log(author.password);
+     console.log(author.name);
+     // console.log(this.email);
+     // console.log(this.img);
+       if((this.username == '') ||
+          (this.username == 'undefined')||
+          (this.name == '') ||
+          (this.name == 'undefined') ||
+          (this.password == '') ||
+          (this.password == 'undefined')){
+          this.isRegistered = false;
+          this.createStorytellerMessage = "Your registration is incomplete";
+          return;
+       }
+
+        $http({ // Makes HTTP request to server
+          method: 'POST',
+          url: backend_domain + '/storytellers',
+          data: { // Gets turned into req.body
+            username: author.username,
+            name: author.name,
+            img: author.img,
+            password: author.password,
+            email: author.email,
+          }
+        }).then(function(response) {
+          console.log(response);
+          if(response.status == 201)
+          {
+             window.location.href = frontend_domain; //"http://localhost:8000";
+          }
+      });
    }
 
 }]);

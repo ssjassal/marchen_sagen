@@ -315,6 +315,9 @@ li{
 /*.modalStyle{
    background-color: #9B9B9B;
 }*/
+input{
+	color: #000;
+}
 .modal-header {
     padding:9px 15px;
     /*border-bottom:1px solid #eee;*/
