@@ -165,7 +165,7 @@ p.storyText{
    font-family: 'Philosopher', sans-serif;
 }
 /*=========CREATE STORY CSS=========*/
-.storyForm input[type="text"],.storyForm2 textarea{
+.storyForm input[type="text"]{
 	outline:none;
 	border:1px solid #f5f5f5;
 	background:none;
@@ -177,20 +177,65 @@ p.storyText{
 	-moz-border-radius:5px;
 	-o-border-radius:5px;
 	-ms-border-radius:5px;
-	float:left;
+	text-align: left;
 	width:75%;
-	margin:1em 0;
+	/*margin:1em 0;*/
+	font-family: 'Philosopher', sans-serif;
 }
 .storyForm2{
-	float:left;
-	width:75%;
+	/*float:left;*/
+	/*width:75%;*/
+
 }
 .storyForm2 textarea{
 	resize:none;
 	min-height:230px;
-	margin-bottom:2em;
-	/*float:left;
-	width:50%;*/
+	/*margin-bottom:2em;*/
+	/*float:left;*/
+	/*width:70%;*/
+	outline:none;
+	border:1px solid #f5f5f5;
+	background:none;
+	color:#fff;
+	font-size:14px;
+	/*padding:13px 10px;*/
+	border-radius:5px;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	-o-border-radius:5px;
+	-ms-border-radius:5px;
+	text-align: left;
+	padding-left: 0.7em;
+	width:75%;
+	/*margin-bottom: 6em;*/
+	font-family: 'Philosopher', sans-serif;
+}
+.storyForm3{
+	/*float:left;*/
+	/*width:75%;*/
+
+}
+.storyForm3 textarea{
+	resize:none;
+	min-height:230px;
+	/*margin-bottom:2em;*/
+	/*float:left;*/
+	/*width:70%;*/
+	outline:none;
+	border:1px solid #f5f5f5;
+	background:none;
+	color:#fff;
+	font-size:14px;
+	/*padding:13px 10px;*/
+	border-radius:5px;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	-o-border-radius:5px;
+	-ms-border-radius:5px;
+	text-align: left;
+	width:100%;
+	/*margin-bottom: 6em;*/
+	font-family: 'Philosopher', sans-serif;
 }
 .submitBtn input[type="submit"]{
 	outline:none;
@@ -212,6 +257,7 @@ p.storyText{
 	-moz-transition:0.5s all;
 	-o-transition:0.5s all;
 	-ms-transition:0.5s all;
+	font-family: 'Philosopher', sans-serif;
 }
 .submitBtn input[type="submit"]:hover{
 	background:#000;
@@ -238,8 +284,37 @@ p.storyText{
 	-moz-transition:0.5s all;
 	-o-transition:0.5s all;
 	-ms-transition:0.5s all;
+	font-family: 'Philosopher', sans-serif;
 }
 .submitBtn2 input[type="submit"]:hover{
+	background:#000;
+	color:#CBCAC7;
+}
+.submitBtn3 input[type="submit"]{
+	outline:none;
+	border:none;
+	background: #CBCAC7;
+	color: #000;
+	font-weight: 600;
+	font-size:18px;
+	padding:15px 0px;
+	width:150%;
+	height: 20%;
+	margin-bottom:.5em;
+	display:block;
+	border-radius:5px;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	-o-border-radius:5px;
+	-ms-border-radius:5px;
+	transition:0.5s all;
+	-webkit-transition:0.5s all;
+	-moz-transition:0.5s all;
+	-o-transition:0.5s all;
+	-ms-transition:0.5s all;
+	font-family: 'Philosopher', sans-serif;
+}
+.submitBtn3 input[type="submit"]:hover{
 	background:#000;
 	color:#CBCAC7;
 }
@@ -259,6 +334,7 @@ p.storyText{
 }
 .snippet-grids{
 	padding:1em 0 0;
+	width: 90%;
 }
 .snippet-grid{
 	display: flex;
@@ -267,7 +343,8 @@ p.storyText{
 	flex-wrap: wrap;
 	flex-direction: column;
 	float:left;
-	width:30%;
+	width:50%;
+	height: 20%;
 	box-shadow:2px 0px 9px #ADADAD;
 	margin: 2rem;
 	margin-left: 5rem;
@@ -395,6 +472,53 @@ p.storyText{
 .allSnippets a:hover{
 	/*background:url(../images/1-.png) no-repeat 5em .5em;*/
 	display:block;
+}
+/*=========MODAL CSS=========*/
+/*.modalStyle{
+   background-color: #9B9B9B;
+}*/
+/*input{
+	color: #000;
+}*/
+label{
+	font-size: 20px;
+}
+.modal-header {
+    padding:9px 15px;
+    /*border-bottom:1px solid #eee;*/
+    background-color: #9B9B9B;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+     border-top-left-radius: 5px;
+     border-top-right-radius: 5px;
+	  font-family: 'Philosopher', sans-serif;
+ }
+.modal-body{
+    background-color: #9B9B9B;
+    text-align: center;
+	 font-family: 'Philosopher', sans-serif;
+}
+.modal-body p{
+	text-align: left;
+}
+.modal-body ul li{
+	text-align: left;
+}
+.modal-footer{
+   background-color: #9B9B9B;
+   -webkit-border-bottom-left-radius: 5px;
+   -webkit-border-bottom-right-radius: 5px;
+   -moz-border-radius-bottomleft: 5px;
+   -moz-border-radius-bottomright: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    text-align: center;
+	 font-family: 'Philosopher', sans-serif;
+}
+.modal-title{
+   text-align: center;
 }
 /*=========HEADER CSS=========*/
 

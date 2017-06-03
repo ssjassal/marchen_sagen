@@ -4,10 +4,10 @@ console.clear();
 //================================
 //-----API Domains Dev & Prod-----
 //================================
-// var frontend_domain = "http://localhost:8000";
-// var backend_domain = "http://localhost:3000";
-var frontend_domain = 'https://marchen-sagen-app.herokuapp.com';
-var backend_domain = 'https://marchen-sagen-api.herokuapp.com';
+var frontend_domain = "http://localhost:8000";
+var backend_domain = "http://localhost:3000";
+// var frontend_domain = 'https://marchen-sagen-app.herokuapp.com';
+// var backend_domain = 'https://marchen-sagen-api.herokuapp.com';
 //========================
 //-----Angular Module-----
 //========================
@@ -27,13 +27,14 @@ var app = angular.module('MSApp', []);
 //========================
 app.controller('StoryController', ['$http', function($http){
 
-   //====================================
+   //===============================
    //----Story: Initializing Var----
-   //====================================
+   //===============================
    this.storyCategory = '';
    this.date_created = '';
    this.title = '';
    this.img = '';
+   this.content = '';
    this.description = '';
    this.storyContent = '';
    this.story_id = '';
@@ -46,8 +47,9 @@ app.controller('StoryController', ['$http', function($http){
    this.storyImg = '';
    this.storyStory = '';
    this.viewStoryIndex = '';
-   this.author = {};
-   this.userPass = {};
+   this.newIndex = '';
+   this.updateItemId ='';
+   this.storytellers = [];
    this.mergedContentArray = [];
    this.categories = [];
    this.snippets = [];
@@ -56,26 +58,40 @@ app.controller('StoryController', ['$http', function($http){
    this.snippetTitle = [];
    this.allSnippetsTitle =[];
    this.category = [];
+   this.updateItem = {};
+   this.deleteItem = {};
    this.createStory = false;
    this.recentSnippet = false;
    this.allStories = false;
    this.addSnippet = false;
    this.viewStory = false;
-   this.isRegistered = false;
+
+   //=====================================
+   //----Storyteller: Initializing Var----
+   //=====================================
+
+   this.author = {};
+   this.userPass = {};
+   this.tale = {};
+   this.storyteller = '';
+   this.username = '';
 
    //==============================
    //----Story: Get All Stories----
    //==============================
    $http({
      method: 'GET',
-     url: backend_domain + '/stories'
+     url: backend_domain + '/stories'//,
+   //   headers: {
+   //      Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
+   //    }
    }).then(function(result){
    //   var today = new Date();
    //   var date = today.getFullYear() + '-' + (today.getMonth() + 1 ) + '-' + today.getDate() + 'T';
    //   var time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
      //console.log('Stories: ', result);
      this.stories = result.data.reverse();
-     console.log(this.addSnippet);
+     //console.log(this.addSnippet);
    //   localStorage.setItem('', this.stories);
      this.categories = result.data;
      this.mergeSnippetToStory();
@@ -88,32 +104,60 @@ app.controller('StoryController', ['$http', function($http){
    //===============================
    $http({
      method: 'GET',
-     url: backend_domain + '/snippets'
+     url: backend_domain + '/snippets'//,
+   //   headers: {
+   //      Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
+   //    }
    }).then(function(result){
      //console.log('Snippets: ',result.data);
    //   console.log(JSON.parse(localStorage.getItem('stories')));
      this.snippets = result.data;
-
+     console.log(this.storyteller);
    }.bind(this));
 
    //====================================
    //---Story: Function Create Stories---
    //====================================
-   this.newStory = function(){
+   this.newStory = function(tale){
+      console.log('LOCAL: ', localStorage.getItem('Storyteller username'));
+      console.log('this.storyteller', this.storyteller);
       $http({ // Makes HTTP request to server
         method: 'POST',
         url: backend_domain + '/stories',
         data: {
           story: { // Gets turned into req.body
-           title: this.title,
-           description: this.description,
-           content: this.content,
-           category: this.category,
-           img: this.image
+           title: tale.title,
+           author: this.storyteller,
+           description: tale.description,
+           content: tale.content,
+           category: tale.category,
+           img: tale.image
           }
-        }
+       }//,
+      //  headers: {
+      //   Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
+      // }
       }).then(function(response) {
-         window.location.href = frontend_domain + '/storyapp.html';
+         $http({
+           method: 'GET',
+           url: backend_domain + '/stories'//,
+         //   headers: {
+         //      Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
+         //    }
+         }).then(function(result){
+         //   var today = new Date();
+         //   var date = today.getFullYear() + '-' + (today.getMonth() + 1 ) + '-' + today.getDate() + 'T';
+         //   var time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+           console.log('Stories: ', result);
+           this.stories = result.data.reverse();
+           //console.log(this.addSnippet);
+         //   localStorage.setItem('', this.stories);
+           this.categories = result.data;
+           this.mergeSnippetToStory();
+           this.setRecentSnippetTitle();
+           //console.log('Recent Snippets: ',this.recentSnippets);
+         }.bind(this));
+         //window.location.href = frontend_domain + '/storyapp.html';
       }.bind(this));
    };
 
@@ -125,8 +169,10 @@ app.controller('StoryController', ['$http', function($http){
       // console.log(this.stories[this.index].id);
       if(this.viewStoryIndex !== ''){
          this.story_id = this.stories[this.viewStoryIndex].id;
+         // this.newIndex = this.viewStoryIndex;
       }else{
          this.story_id = this.stories[this.index].id;
+         // this.newIndex = this.index;
       }
       this.snippet = this.snippet.toString();
       //console.log(this.snippet);
@@ -141,12 +187,15 @@ app.controller('StoryController', ['$http', function($http){
            snip: this.snippet,
            storyteller_id: 2
           }
-        }
+       }//,
+      //  headers: {
+      //   Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
+      // }
       }).then(function(response) {
+         // this.viewStory(this.newIndex)
          window.location.href = frontend_domain + '/storyapp.html';
         //console.log(response);
       }.bind(this));
-
    };
 
    //=========================================
@@ -205,7 +254,7 @@ app.controller('StoryController', ['$http', function($http){
              //console.log('In second FOR loop', j);
              //console.log('Recent Snippet Story ID ', this.recentSnippets[i].story_id );
              //console.log('Stories Story ID ', this.stories[j].id);
-             console.log('Recent Snippet of l ', this.recentSnippets[k].story_id );
+             //console.log('Recent Snippet of l ', this.recentSnippets[k].story_id );
              if (this.recentSnippets[k].story_id === this.stories[l].id){
                  //console.log('In IF statement [i], [j], storytitle', i,j,this.stories[i].title);
                  this.snippetTitle.push(this.stories[l].title);
@@ -227,6 +276,7 @@ app.controller('StoryController', ['$http', function($http){
       this.createStory = false;
       // console.log('allStories: '+ this.allStories);
       this. displaySnippets();
+      this.viewStory = false;
    };
 
    //==========================================
@@ -235,7 +285,7 @@ app.controller('StoryController', ['$http', function($http){
    this.displaySnippets = function(){
       //console.log('Snips: ',this.snippets);
       //console.log('Stories: ', this.stories);;
-
+      this.snippets = this.snippets.reverse();
       for (var i = 0; i < this.snippets.length; i++) {
           //console.log('In FOR loop', i);
           for (var j = 0; j < this.stories.length; j++) {
@@ -265,9 +315,11 @@ app.controller('StoryController', ['$http', function($http){
       this.description = this.stories[index].description;
       this.storyCategory = this.stories[index].category;
       this.img = this.stories[index].img;
-      this.addSnippet = true;
+      this.content = this.mergedContentArray[index];
+      // this.addSnippet = true;
       //console.log(this.addSnippet);
       this.allStories = true;
+      this.viewStory = false;
    };
 
    //================================================
@@ -284,11 +336,69 @@ app.controller('StoryController', ['$http', function($http){
       this.description = this.stories[this.viewStoryIndex].description;
       this.storyCategory = this.stories[this.viewStoryIndex].category;
       this.img = this.stories[this.viewStoryIndex].img;
-      this.addSnippet = true;
+      console.log('Merged Array of Index: ',this.mergedContentArray[this.viewStoryIndex]);
+      this.content = this.mergedContentArray[this.viewStoryIndex];
+      // this.addSnippet = true;
       //console.log(this.addSnippet);
       this.allStories = true;
+      this.viewStory = false;
    };
 
+   //============================================
+   //---Story: Function Display Update Snippet---
+   //============================================
+   this.findUpdateSnippet = function(updateIndex){
+      this.updateItem = this.snippets[updateIndex];
+      this.updateItemId = this.updateItem.id;
+
+      this.snippet = this.updateItem.snip;
+      this.title = this.allSnippetsTitle[updateIndex];
+      // this.title = this.stories[updateIndex].title;
+      // this.description = this.stories[updateIndex].description;
+      // this.storyCategory = this.stories[updateIndex].category;
+      // this.img = this.stories[updateIndex].img;
+      // this.content = this.mergedContentArray[updateIndex];
+   };
+   //=========================================
+   //---Story: Function Update Snippet---
+   //=========================================
+   this.updateSnippet = function(updateIndex){
+      this.updateItem = this.snippets[updateIndex];
+      this.updateItemId = this.updateItem.id;
+
+      //NEED TO ADD STORYTELLER ID
+
+      $http({ // Makes HTTP request to server
+        method: 'PUT',
+        url: backend_domain + '/snippets/' + this.updateItemId,
+        data: {
+          snippet: { // Gets turned into req.body
+           story_id: this.story_id,
+           snip: this.snippet,
+           storyteller_id: this.storytellerID
+          }
+       }//,
+      //  headers: {
+      //   Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
+      // }
+      }).then(function(response) {
+         // this.viewStory(this.newIndex)
+         window.location.href = frontend_domain + '/storyapp.html';
+        //console.log(response);
+      }.bind(this));
+      // this.title = this.stories[updateIndex].title;
+      // this.description = this.stories[updateIndex].description;
+      // this.storyCategory = this.stories[updateIndex].category;
+      // this.img = this.stories[updateIndex].img;
+      // this.content = this.mergedContentArray[updateIndex];
+   };
+
+   //====================================
+   //---Story: Function Delete Snippet---
+   //====================================
+   this.deleteSnippet = function(index){
+
+   };
    //=========================================
    //---Story: Function Return to Home Page---
    //=========================================
@@ -296,6 +406,8 @@ app.controller('StoryController', ['$http', function($http){
       this.recentSnippet = false;  //show
       this.allStories = false; //hide
       this.createStory = false;
+      this.index = '';
+      this.viewStoryIndex = '';
    };
 
    //======================================
@@ -332,6 +444,15 @@ app.controller('StoryController', ['$http', function($http){
       this.viewStory = true;
       this.allStories = true;
    };
+
+   //====================================
+   //----Storyteller: Function Logout----
+   //====================================
+      this.logout = function(){
+        localStorage.clear('Storyteller username');
+        window.location.href = frontend_domain;
+        //location.reload();
+      };
 
    //=======================================
    //----Storyteller: Create Storyteller----
@@ -378,13 +499,58 @@ app.controller('StoryController', ['$http', function($http){
    };
 
    //===================================
-   //----Storyteller: Function Login----
+   //----Storyteller: Function Enter----
    //===================================
-   this.loginStoryteller = function(userPass) {
-      console.log(userPass);
+   this.enterStoryteller = function(userPass) {
+      // console.log(userPass);
       this.username = userPass.username.toString();
-      this.password = userPass.password.toString();
-     this.appPage = frontend_domain + '/storyapp.html';
+
+      console.log(this.storyteller);
+      $http({ // Makes HTTP request to server
+        method: 'POST',
+        url: backend_domain + '/storytellers',
+        data: { // Gets turned into req.body
+           storyteller: {
+             username: this.username,
+           }
+        }
+      }).then(function(response) {
+        console.log(response);
+        if(response.status == 201)
+        {
+           //this.author = response.data.storyteller;
+           window.location.href = frontend_domain; //"http://localhost:8000";
+        }
+        localStorage.setItem('Storyteller username', this.username);
+        this.storyteller = localStorage.getItem('Storyteller username');
+
+        $http({
+          method: 'GET',
+          url: backend_domain + '/storytellers'//,
+        //   headers: {
+        //      Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
+        //    }
+        }).then(function(result){
+          //console.log('Storytellers: ', result);
+          this.storytellers = result.data;
+          for (var o = 0; o < this.storytellers.length; o++) {
+             if(this.storyteller === this.storytellers[o].username)
+             {
+                this.storytellerID = this.storytellers[o].id;
+             }
+          }
+         window.location.href = frontend_domain + '/storyapp.html';
+         //  this.categories = result.data;
+         //  this.mergeSnippetToStory();
+         //  this.setRecentSnippetTitle();
+          //console.log('Recent Snippets: ',this.recentSnippets);
+        }.bind(this));
+
+    }.bind(this));
+      //console.log(this.storyteller);
+
+      // this.password = userPass.password.toString();
+      //this.appPage = frontend_domain + '/storyapp.html';
    //   if ((userPass == 'undefined') ||
    //       (userPass.username == null) ||
    //       (userPass.username == '') ||
@@ -397,34 +563,35 @@ app.controller('StoryController', ['$http', function($http){
    //          return;
    //   }
 
-     $http({ // Makes HTTP request to server
-       method: 'POST',
-       // url: this.domainurl1 + '/players/login',
-       url: backend_domain + '/storytellers/login',
-       data: {
-         storyteller: { // Gets turned into req.body
-           username: this.username,
-           password: this.password
-         }
-       }
-     }).then(function(response) {
-       console.log(response);
-       if(response.data.status == 401){
-         window.location.href = frontend_domain;
-         this.logInMessage = 'Invalid Login Attempt, please try again.';
-      }else
-      {
-         console.log("Logged in");
-         localStorage.clear('token')
-         this.storyteller = response.data.storyteller;
-         localStorage.setItem('token', JSON.stringify(response.data.token));
-         // localStorage.setItem('storytellerId', this.storyteller.id);
-         window.location.href = this.appPage;
-         // console.log(JSON.parse(localStorage.getItem('token')));
-         // this.isLoggedIn = true;
-       }
-     }.bind(this));
+   //   $http({ // Makes HTTP request to server
+   //     method: 'POST',
+   //     // url: this.domainurl1 + '/players/login',
+   //     url: backend_domain + '/storytellers/login',
+   //     data: {
+   //       storyteller: { // Gets turned into req.body
+   //         username: this.username,
+   //         password: this.password
+   //       }
+   //     }
+   //   }).then(function(response) {
+   //     console.log(response);
+   //     if(response.data.status == 401){
+   //       window.location.href = frontend_domain;
+   //       this.logInMessage = 'Invalid Login Attempt, please try again.';
+   //    }else
+   //    {
+   //       console.log("Logged in");
+   //       localStorage.clear('token');
+   //       this.storyteller = response.data.storyteller;
+   //       localStorage.setItem('token', JSON.stringify(response.data.token));
+   //       // localStorage.setItem('storytellerId', this.storyteller.id);
+   //       window.location.href = this.appPage;
+   //       // console.log(JSON.parse(localStorage.getItem('token')));
+   //       // this.isLoggedIn = true;
+   //     }
+   //   }.bind(this));
    };
+
 }]);
 //======================
 //----Graveyard Code----

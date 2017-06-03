@@ -61,11 +61,11 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a ng-click="BodyOfWork.goHome()" href="#">Home</a></li>
-            <li><a ng-click="BodyOfWork.createStories()" href="#">Create Story</a></li>
-            <li><a href="#contact">Members</a></li>
+            <li><a role="button" data-toggle="modal" data-target="#createstory" href="#">Create Story</a></li>
+            <li><a href="#" role="button" data-toggle="modal" data-target="#about">About</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="../navbar-static-top/">Log Out</a></li>
+            <li><a href="#" ng-click="BodyOfWork.logout()">Log Out</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -95,11 +95,12 @@
                   </ul>
                </div>
                <div class="allSnippets">
-                  <a href="#" role="button" ng-cLick="BodyOfWork.showSnippets()">All Snippets</a>
+                  <a href="#" role="button" ng-click="BodyOfWork.showSnippets()">All Snippets</a>
                </div>
             </div>
          </div>
-			<div ng-hide="BodyOfWork.allStories" ng-show="!BodyOfWork.viewStory"  ng-repeat="story in BodyOfWork.stories track by $index" class="title">
+         <!--All Stories-->
+			<div ng-hide="BodyOfWork.allStories" ng-repeat="story in BodyOfWork.stories track by $index" class="title">
 				<div class="title">
 					<h3><a href="#" ng-click="BodyOfWork.viewStory($index)">{{story.title}}</a></h3>
 				</div>
@@ -114,7 +115,8 @@
 				</div><br>
 				<div class="add">
                <div class="submitBtn2">
-                  <input ng-click="BodyOfWork.addSnippets($index)" type="submit" value="Add to Story">
+                  <!-- <button data-toggle="modal" data-target="#addSnippet"> Continue Story </button> -->
+                  <input data-toggle="modal" data-target="#addSnippet" ng-click="BodyOfWork.addSnippets($index)" type="submit" value="Continue Story">
                </div>
 				</div>
             <div>
@@ -124,6 +126,7 @@
                <p class="divide"></p>
             </div>
 			</div>
+         <!--View Story-->
          <div ng-show="BodyOfWork.viewStory" class="title">
 				<div class="title">
 					<h3>{{BodyOfWork.storyTitle}}</h3>
@@ -139,56 +142,176 @@
 				</div><br>
 				<div class="add">
                <div class="submitBtn2">
-                  <input ng-click="BodyOfWork.viewStorySnippets()" type="submit" value="Add to Story">
+                  <input data-toggle="modal" data-target="#addSnippet" ng-click="BodyOfWork.viewStorySnippets()" type="submit" value="Continue Story">
                </div>
 				</div>
 			</div>
-         <div  ng-show="BodyOfWork.addSnippet" class="snippet">
-            <h3>Create Snippet</h3>
-            <div class="snippetForm">
-                  <label>Story Title: </label><p>{{BodyOfWork.title}}</p><br>
-                  <label>Story Description: </label><p>{{BodyOfWork.description}}</p><br>
-                  <label>Story Category: </label><p>{{BodyOfWork.storyCategory}}</p><br>
-                  <label>Story Image URL </label><p>{{BodyOfWork.img}}</p><br>
-               <form>
-                  <div class="storyForm2">
-                     <textarea ng-model="BodyOfWork.snippet" class="storyContent" placeholder="Message:" required=" "></textarea><br>
-                  </div>
-                  <div class="submitBtn">
-                     <input ng-click="BodyOfWork.newSnippet()" type="submit" value="SUBMIT">
-                  </div>
-               </form>
-            </div>
-         </div>
          <div ng-show="BodyOfWork.recentSnippet" class="snippet">
             <h3>All Snippets</h3>
             <div class="snippet-grids">
                <div ng-repeat="snippets in BodyOfWork.snippets track by $index" class="snippet-grid">
                   <h4><a href="#">{{BodyOfWork.allSnippetsTitle[$index]}}</a></h4>
                   <p>{{snippets.snip}}</p>
+                  <div class="submitBtn3">
+                     <input data-toggle="modal" data-target="#updateSnippet" ng-click="BodyOfWork.findUpdateSnippet($index)" type="submit" value="Update">
+                     <input ng-click="BodyOfWork.deleteSnippet($index)" type="submit" value="Delete">
+                  </div>
                </div>
+
                <!-- <div class="clearfix"> </div> -->
             </div>
          </div>
-         <div ng-show="BodyOfWork.createStory" class="snippet">
-            <h3>Create Story</h3>
-            <div class="storyForm">
-   				<form>
-   					<input type="text" ng-model="BodyOfWork.title" placeholder="Title:" required=" "><br>
-   					<input type="text" ng-model="BodyOfWork.description" placeholder="Description:" required=" "><br>
-                  <input type="text" ng-model="BodyOfWork.category" placeholder="Category:" required=" "><br>
-                  <input type="text" ng-model="BodyOfWork.image" placeholder="Image URL:" required=" "><br>
-                  <div class="storyForm2">
-      					<textarea ng-model="BodyOfWork.content" class="storyContent" placeholder="Message:" required=" "></textarea><br>
-                  </div>
-                  <div class="submitBtn">
-      					<input ng-click="BodyOfWork.newStory()" type="submit" value="SUBMIT">
-                  </div>
-   				</form>
-   			</div>
-         </div>
       </div>
 	</div>
+</div>
+<!--Modals-->
+<!-- Create Snippet Modal -->
+<div class=" modal fade" id="addSnippet" role="dialog">
+   <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="formHeader modal-title"><img src="images/ft16.png" width="40" height="40"/> Create a New Story <img src="images/ft16.png" width="40" height="40"/></h4>
+         </div>
+         <div class="formInput modal-body">
+            <p>
+               <label>Story Title: </label><br>{{BodyOfWork.title}}<br>
+               <label>Story Description:</label><br>{{BodyOfWork.description}}<br>
+               <label>Story Category: </label><br>{{BodyOfWork.storyCategory}}<br>
+               <label>Story Image URL: </label><br>{{BodyOfWork.img}}<br>
+               <label>Story Content </label><br>{{BodyOfWork.content}}<br>
+               <form class="modal-body storyForm">
+                  <div class="storyForm3">
+                     <textarea ng-model="BodyOfWork.snippet" class="storyContent" placeholder="Message:" required=" "></textarea><br>
+                  </div>
+                        <!-- <div class="submitBtn">
+                           <input ng-click="BodyOfWork.newSnippet()" type="submit" value="SUBMIT">
+                        </div> -->
+               </form>
+         </p>
+         </div>
+         <div class="modal-footer">
+            <button class="btn btn-default" type="submit" name="button" ng-click="BodyOfWork.newSnippet()">Continue Story</button>
+            <button type="button" ng-click="BodyOfWork.goHome()" class="btn btn-default" data-dismiss="modal">Close</button>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- Update Snippet Modal -->
+<div class=" modal fade" id="updateSnippet" role="dialog">
+   <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="formHeader modal-title"><img src="images/ft16.png" width="40" height="40"/> Create a New Story <img src="images/ft16.png" width="40" height="40"/></h4>
+         </div>
+         <div class="formInput modal-body">
+            <p>
+               <label>Story Title: </label><br>{{BodyOfWork.title}}<br>
+               <form class="modal-body storyForm">
+                  <div class="storyForm3">
+                     <textarea ng-model="BodyOfWork.snippet" class="storyContent" placeholder="{{BodyOfWork.snippet}}" required=" "></textarea><br>
+                  </div>
+                        <!-- <div class="submitBtn">
+                           <input ng-click="BodyOfWork.newSnippet()" type="submit" value="SUBMIT">
+                        </div> -->
+               </form>
+         </p>
+         </div>
+         <div class="modal-footer">
+            <button class="btn btn-default" type="submit" name="button" ng-click="BodyOfWork.updateSnippet()">Update Story</button>
+            <button type="button" ng-click="BodyOfWork.goHome()" class="btn btn-default" data-dismiss="modal">Close</button>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- Create Story Modal -->
+<div class=" modal fade" id="createstory" role="dialog">
+   <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="formHeader modal-title"><img src="images/ft16.png" width="40" height="40"/> Create a New Story <img src="images/ft16.png" width="40" height="40"/></h4>
+         </div>
+         <div class="formInput modal-body">
+            <form class="modal-body storyForm">
+               <!-- <div ng-hide="Storyteller.isRegistered" style="color:red">{{Storyteller.createStorytellerMessage}}</div><br> -->
+               <!-- <label>Author</lable><br>{{BodyOfWork.storyteller}} -->
+               <input type="text" readonly="" ng-model="tale.author" placeholder="{{BodyOfWork.storyteller}}" required=" "><br>
+					<input type="text" ng-model="tale.title" placeholder="Title:" required=" "><br>
+					<input type="text" ng-model="tale.description" placeholder="Description:" required=" "><br>
+               <input type="text" ng-model="tale.category" placeholder="Category:" required=" "><br>
+               <input type="text" ng-model="tale.image" placeholder="Image URL:" required=" "><br>
+               <div class="storyForm2">
+   					<textarea ng-model="tale.content" class="storyContent" placeholder="Message:" required=" "></textarea><br>
+               </div>
+                        <!-- <div class="submitBtn">
+            					<input ng-click="BodyOfWork.newStory(tale)" type="submit" value="SUBMIT">
+                        </div> -->
+               <!-- <input ng-model="author.name" type="text" placeholder="Name"/><span style="color:red">*</span><br>
+               <input ng-model="author.email" type="text" placeholder="Email"/><span style="opacity: 0">*</span><br>
+               <input ng-model="author.img" type="text" placeholder="Image URL"/><span style="opacity: 0">*</span><br>
+               <input ng-model="author.username" type="text" placeholder="username"/><span style="color:red">*</span><br>
+               <input ng-model="author.password" type="text" placeholder="Password"/><span style="color:red">*</span><br> -->
+               <!-- <button class="btn btn-default" type="submit" name="button" ng-click="Storyteller.createStoryteller(author)">Submit</button>
+                -->
+             </form>
+         </div>
+         <div class="modal-footer">
+            <button class="btn btn-default" type="submit" name="button" ng-click="BodyOfWork.newStory(tale)">Create</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- About Modal -->
+<div class=" modal fade" id="about" role="dialog">
+   <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="formHeader modal-title"><img src="images/ft16.png" width="40" height="40"/> About <img src="images/ft16.png" width="40" height="40"/></h4>
+         </div>
+         <div class="formInput modal-body">
+            <p>
+               <label>
+                  Introduction <br>
+               </label>
+               <p>This site is a community site. It is meant to bring people to together in a provided creative outlet. People can start a fairy tale or legend and others in the community can add to the story.  What wonderous adventures will you create?<p>
+               <label>
+                  Background<br>
+               </label>
+               <p>Märchen(Mär·chen) is the German diminutive of the obsolete German word Mär, meaning "news, tale" (Märchen). It may refer to:
+                  <ul>
+                     <li>
+                        A fairy tale is a type of short story that typically features folkloric fantasy characters, such as dwarves, dragons, elves, fairies, giants, gnomes, goblins, griffins, mermaids, talking animals, trolls, unicorns, or witches, and usually magic or enchantments. Fairy tales may be distinguished from other folk narratives such as legends (which generally involve belief in the veracity of the events described)[1] and explicitly moral tales, including beast fables. The term is mainly used for stories with origins in European tradition and, at least in recent centuries, mostly relates to children's literature.
+                  </li>
+               </ul>
+               <p>Sagen(Sȯ·gen) is an obsolete German word, meaning "legends". It may refer to:</p>
+               <ul>
+                  <li>
+                  A legend is a narrative of human actions that are perceived both by teller and listeners to take place within human history and demonstrating human values, and which possesses certain qualities that give the tale verisimilitude. Legend, for its active and passive participants, includes no happenings that are outside the realm of "possibility", but may include miracles. Legends may be transformed over time, in order to keep them fresh and vital, and realistic. Many legends operate within the realm of uncertainty, never being entirely believed by the participants, but also never being resolutely doubted.
+                  </li>
+               </ul>
+               <p>The Brothers Grimm defined legend as folktale historically grounded.[2] A modern folklorist's professional definition of legend was proposed by Timothy R. Tangherlini in 1990:</p>
+               <ul>
+                  <li>
+                  Legend, typically, is a short (mono-) episodic, traditional, highly ecotypified[4] historicized narrative performed in a conversational mode, reflecting on a psychological level a symbolic representation of folk belief and collective experiences and serving as a reaffirmation of commonly held values of the group to whose tradition it belongs.
+                  </li>
+               </ul>
+            </p>
+            </p>
+         </div>
+         <div class="modal-footer">
+            <!-- <button class="btn btn-default" type="submit" name="button" ng-click="Storyteller.loginStoryteller(userPass)">Login</button> -->
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+         </div>
+      </div>
+   </div>
 </div>
 <footer class="footer">
    <div class="container">
