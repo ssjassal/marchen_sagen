@@ -91,7 +91,7 @@ app.controller('StoryController', ['$http', function($http){
    //   var today = new Date();
    //   var date = today.getFullYear() + '-' + (today.getMonth() + 1 ) + '-' + today.getDate() + 'T';
    //   var time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
-     //console.log('Stories: ', result);
+     console.log('Stories: ', result);
      this.stories = result.data.reverse();
      //console.log(this.addSnippet);
    //   localStorage.setItem('', this.stories);
@@ -115,7 +115,7 @@ app.controller('StoryController', ['$http', function($http){
      //console.log('Snippets: ',result.data);
    //   console.log(JSON.parse(localStorage.getItem('stories')));
      this.snippets = result.data;
-     console.log(this.storyteller);
+     //console.log(this.storyteller);
      this.viewStory = false;
    }.bind(this));
 
@@ -123,25 +123,30 @@ app.controller('StoryController', ['$http', function($http){
    //---Story: Function Create Stories---
    //====================================
    this.newStory = function(tale){
-      console.log('LOCAL: ', localStorage.getItem('Storyteller username'));
-      console.log('this.storyteller', this.storyteller);
+      //console.log('LOCAL: ', localStorage.getItem('Storyteller username'));
+      //console.log('this.storyteller', this.storyteller);
+      //console.log(tale.image);
+      // tale.title = tale.title.toString();
+      // tale.author = tale.author.toString();
+      // tale.image = tale.image.toString();
       $http({ // Makes HTTP request to server
         method: 'POST',
         url: backend_domain + 'stories',
         data: {
           story: { // Gets turned into req.body
            title: tale.title,
-           author: this.storyteller,
+           author: this.storyteller.toString(),
            description: tale.description,
            content: tale.content,
            category: tale.category,
-           img: tale.image
+           img: tale.image.toString()
           }
        }//,
       //  headers: {
       //   Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
       // }
       }).then(function(response) {
+         console.log(response);
          $http({
            method: 'GET',
            url: backend_domain + 'stories'//,

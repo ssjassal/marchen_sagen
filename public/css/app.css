@@ -47,6 +47,9 @@ aside{
    float: left;
    overflow: hidden;
 }
+img{
+	margin-right: 1em;
+}
 /*.container {
   display: flex;
   flex: 1;

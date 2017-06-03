@@ -102,14 +102,14 @@
          <!--All Stories-->
 			<div ng-hide="BodyOfWork.allStories" ng-repeat="story in BodyOfWork.stories track by $index" class="title">
 				<div class="title">
-					<h3><a href="#" ng-click="BodyOfWork.viewStory($index)">{{story.title}}</a></h3>
+					<h3><img src="images/ft16.png" width="70" height="70"/><a href="#" ng-click="BodyOfWork.viewStory($index)">{{story.title}}</a></h3>
 				</div>
             <!-- <div >
                <p class="member"><a href="#">{{story.author}}</a><br><span>{{story.date}}</span></p>
             </div> -->
 				<div class="clearfix"> </div>
 				<div class="title-grid">
-					<a href="#"><img src="{{story.img}}"/></a>
+					<!-- <a href="#"><img src="{{story.img}}"/></a> -->
 					<p class="description">{{story.description}}</p>
 					<p class="storyText">{{BodyOfWork.mergedContentArray[$index]}}</p>
 				</div><br>
@@ -136,7 +136,7 @@
             </div>
 				<div class="clearfix"> </div>
 				<div class="title-grid">
-					<a href="#"><img src="{{BodyOfWork.storyImg}}"/></a>
+					<!-- <a href="#"><img src="{{BodyOfWork.storyImg}}"/></a> -->
 					<p class="description">{{BodyOfWork.storyDescription}}</p>
 					<p class="storyText">{{BodyOfWork.viewStoryContent}}</p>
 				</div><br>
@@ -180,7 +180,7 @@
                <label>Story Title: </label><br>{{BodyOfWork.title}}<br>
                <label>Story Description:</label><br>{{BodyOfWork.description}}<br>
                <label>Story Category: </label><br>{{BodyOfWork.storyCategory}}<br>
-               <label>Story Image URL: </label><br>{{BodyOfWork.img}}<br>
+               <!-- <label>Story Image URL: </label><br>{{BodyOfWork.img}}<br> -->
                <label>Story Content </label><br>{{BodyOfWork.content}}<br>
                <form class="modal-body storyForm">
                   <div class="storyForm3">
@@ -245,7 +245,7 @@
 					<input type="text" ng-model="tale.title" placeholder="Title:" required=" "><br>
 					<input type="text" ng-model="tale.description" placeholder="Description:" required=" "><br>
                <input type="text" ng-model="tale.category" placeholder="Category:" required=" "><br>
-               <input type="text" ng-model="tale.image" placeholder="Image URL:" required=" "><br>
+               <!-- <input type="text" ng-model="tale.image" placeholder="Image URL:" required=" "><br> -->
                <div class="storyForm2">
    					<textarea ng-model="tale.content" class="storyContent" placeholder="Message:" required=" "></textarea><br>
                </div>
@@ -262,7 +262,7 @@
              </form>
          </div>
          <div class="modal-footer">
-            <button class="btn btn-default" type="submit" name="button" ng-click="BodyOfWork.newStory(tale)">Create</button>
+            <button class="btn btn-default" type="submit" name="button" ng-click="BodyOfWork.newStory(tale)" data-dismiss="modal">Create</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
          </div>
       </div>
