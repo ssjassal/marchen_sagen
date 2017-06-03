@@ -4,10 +4,10 @@ console.clear();
 //================================
 //-----API Domains Dev & Prod-----
 //================================
-var frontend_domain = "http://localhost:8000";
-var backend_domain = "http://localhost:3000";
-// var frontend_domain = 'https://marchen-sagen-app.herokuapp.com';
-// var backend_domain = 'https://marchen-sagen-api.herokuapp.com';
+// var frontend_domain = "http://localhost:8000";
+// var backend_domain = "http://localhost:3000";
+var frontend_domain = 'https://marchen-sagen-app.herokuapp.com';
+var backend_domain = 'https://marchen-sagen-api.herokuapp.com';
 //========================
 //-----Angular Module-----
 //========================
