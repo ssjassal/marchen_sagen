@@ -91,7 +91,7 @@
                <div class="recentSnippet">
                   <h3>Recent Snippets</h3>
                   <ul ng-repeat="snippet in BodyOfWork.recentSnippets track by $index" ng-if="$index < 5">
-                     <li><a href="#" ng-click="BodyOfWork.viewStory($index)">{{BodyOfWork.snippetTitle[$index]}}</a><br>{{snippet.snip}}</li>
+                     <li><span class="spanTitle">{{BodyOfWork.snippetTitle[$index]}}</span><br>{{snippet.snip}}</li>
                   </ul>
                </div>
                <div class="allSnippets">
@@ -104,9 +104,9 @@
 				<div class="title">
 					<h3><a href="#" ng-click="BodyOfWork.viewStory($index)">{{story.title}}</a></h3>
 				</div>
-            <div >
+            <!-- <div >
                <p class="member"><a href="#">{{story.author}}</a><br><span>{{story.date}}</span></p>
-            </div>
+            </div> -->
 				<div class="clearfix"> </div>
 				<div class="title-grid">
 					<a href="#"><img src="{{story.img}}"/></a>
@@ -146,11 +146,12 @@
                </div>
 				</div>
 			</div>
+         <!--All Snippets-->
          <div ng-show="BodyOfWork.recentSnippet" class="snippet">
             <h3>All Snippets</h3>
             <div class="snippet-grids">
                <div ng-repeat="snippets in BodyOfWork.snippets track by $index" class="snippet-grid">
-                  <h4><a href="#">{{BodyOfWork.allSnippetsTitle[$index]}}</a></h4>
+                  <h4>{{BodyOfWork.allSnippetsTitle[$index]}}</h4>
                   <p>{{snippets.snip}}</p>
                   <div class="submitBtn3">
                      <input data-toggle="modal" data-target="#updateSnippet" ng-click="BodyOfWork.findUpdateSnippet($index)" type="submit" value="Update">
