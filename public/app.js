@@ -6,8 +6,8 @@ console.clear();
 //================================
 // var frontend_domain = "http://localhost:8000";
 // var backend_domain = "http://localhost:3000";
-var frontend_domain = 'https://marchen-sagen-app.herokuapp.com';
-var backend_domain = 'https://marchen-sagen-api.herokuapp.com';
+var frontend_domain = 'https://marchen-sagen-app.herokuapp.com/';
+var backend_domain = 'https://marchen-sagen-api.herokuapp.com/';
 //========================
 //-----Angular Module-----
 //========================
@@ -83,7 +83,7 @@ app.controller('StoryController', ['$http', function($http){
    //==============================
    $http({
      method: 'GET',
-     url: backend_domain + '/stories'//,
+     url: backend_domain + 'stories'//,
    //   headers: {
    //      Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
    //    }
@@ -107,7 +107,7 @@ app.controller('StoryController', ['$http', function($http){
    //===============================
    $http({
      method: 'GET',
-     url: backend_domain + '/snippets'//,
+     url: backend_domain + 'snippets'//,
    //   headers: {
    //      Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
    //    }
@@ -127,7 +127,7 @@ app.controller('StoryController', ['$http', function($http){
       console.log('this.storyteller', this.storyteller);
       $http({ // Makes HTTP request to server
         method: 'POST',
-        url: backend_domain + '/stories',
+        url: backend_domain + 'stories',
         data: {
           story: { // Gets turned into req.body
            title: tale.title,
@@ -144,7 +144,7 @@ app.controller('StoryController', ['$http', function($http){
       }).then(function(response) {
          $http({
            method: 'GET',
-           url: backend_domain + '/stories'//,
+           url: backend_domain + 'stories'//,
          //   headers: {
          //      Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
          //    }
@@ -185,7 +185,7 @@ app.controller('StoryController', ['$http', function($http){
       // this.storyteller_id = this.storytellers //need storyteller id passed
       $http({ // Makes HTTP request to server
         method: 'POST',
-        url: backend_domain + '/snippets',
+        url: backend_domain + 'snippets',
         data: {
           snippet: { // Gets turned into req.body
            story_id: this.story_id,
@@ -198,7 +198,7 @@ app.controller('StoryController', ['$http', function($http){
       // }
       }).then(function(response) {
          // this.viewStory(this.newIndex)
-         window.location.href = frontend_domain + '/storyapp.html';
+         window.location.href = frontend_domain + 'storyapp.html';
         //console.log(response);
       }.bind(this));
    };
@@ -381,7 +381,7 @@ app.controller('StoryController', ['$http', function($http){
       //NEED TO ADD STORYTELLER ID
       $http({ // Makes HTTP request to server
         method: 'PUT',
-        url: backend_domain + '/snippets/' + this.updateItemId,
+        url: backend_domain + 'snippets/' + this.updateItemId,
         data: {
           snippet: { // Gets turned into req.body
            snip: this.snippet
@@ -394,7 +394,7 @@ app.controller('StoryController', ['$http', function($http){
       }).then(function(response) {
          // this.viewStory(this.newIndex)
          this.viewStory = false;
-         window.location.href = frontend_domain + '/storyapp.html';
+         window.location.href = frontend_domain + 'storyapp.html';
         //console.log(response);
       }.bind(this));
       // this.title = this.stories[updateIndex].title;
@@ -411,7 +411,7 @@ app.controller('StoryController', ['$http', function($http){
       //console.log(this.snippets[index]);
       $http({ // Makes HTTP request to server
         method: 'DELETE',
-        url: backend_domain + '/snippets/' + this.snippets[index].id,
+        url: backend_domain + 'snippets/' + this.snippets[index].id,
         data: {
           snippet: this.snippets[index].id
         }
@@ -422,7 +422,7 @@ app.controller('StoryController', ['$http', function($http){
       }).then(function(response) {
          // this.viewStory(this.newIndex)
          this.viewStory = false;
-        window.location.href = frontend_domain + '/storyapp.html';
+        window.location.href = frontend_domain + 'storyapp.html';
         //console.log(response);
       }.bind(this));
    };
@@ -483,49 +483,7 @@ app.controller('StoryController', ['$http', function($http){
         //location.reload();
       };
 
-   // //=======================================
-   // //----Storyteller: Create Storyteller----
-   // //=======================================
-   // this.createStoryteller = function(author){
-   //
-   // //   console.log('create new storyteller');
-   // //   console.log(author.username);
-   // //   console.log(author.password);
-   // //   console.log(author.name);
-   // //   // console.log(this.email);
-   // //   // console.log(this.img);
-   // //    //  if((this.username == '') ||
-   // //    //     (this.username == 'undefined')||
-   // //    //     (this.name == '') ||
-   // //    //     (this.name == 'undefined') ||
-   // //    //     (this.password == '') ||
-   // //    //     (this.password == 'undefined')){
-   // //    //     this.isRegistered = false;
-   // //    //     this.createStorytellerMessage = "Your registration is incomplete";
-   // //    //     return;
-   // //    //  }
-   //
-   //      $http({ // Makes HTTP request to server
-   //        method: 'POST',
-   //        url: backend_domain + '/storytellers',
-   //        data: { // Gets turned into req.body
-   //           storyteller: {
-   //             username: author.username,
-   //             name: author.name,
-   //             img: author.img,
-   //             password: author.password,
-   //             email: author.email
-   //           }
-   //        }
-   //      }).then(function(response) {
-   //        console.log(response);
-   //        if(response.status == 201)
-   //        {
-   //           this.author = response.data.storyteller;
-   //           window.location.href = frontend_domain; //"http://localhost:8000";
-   //        }
-   //    }.bind(this));
-   // };
+
 
    //===================================
    //----Storyteller: Function Enter----
@@ -537,7 +495,7 @@ app.controller('StoryController', ['$http', function($http){
       //console.log(this.storyteller);
       $http({ // Makes HTTP request to server
         method: 'POST',
-        url: backend_domain + '/storytellers',
+        url: backend_domain + 'storytellers',
         data: { // Gets turned into req.body
            storyteller: {
              username: this.username,
@@ -553,7 +511,7 @@ app.controller('StoryController', ['$http', function($http){
            //console.log(this.storyteller);
            $http({
              method: 'GET',
-             url: backend_domain + '/storytellers'//,
+             url: backend_domain + 'storytellers'//,
            //   headers: {
            //      Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
            //    }
@@ -569,7 +527,7 @@ app.controller('StoryController', ['$http', function($http){
                    //console.log('ID: ', this.storytellerID);
                 }
              }
-            window.location.href = frontend_domain + '/storyapp.html';
+            window.location.href = frontend_domain + 'storyapp.html';
            }.bind(this));
            //this.author = response.data.storyteller;
         }
@@ -782,3 +740,46 @@ app.controller('StoryController', ['$http', function($http){
 //      //location.reload();
 //    };
 //
+// //=======================================
+// //----Storyteller: Create Storyteller----
+// //=======================================
+// this.createStoryteller = function(author){
+//
+// //   console.log('create new storyteller');
+// //   console.log(author.username);
+// //   console.log(author.password);
+// //   console.log(author.name);
+// //   // console.log(this.email);
+// //   // console.log(this.img);
+// //    //  if((this.username == '') ||
+// //    //     (this.username == 'undefined')||
+// //    //     (this.name == '') ||
+// //    //     (this.name == 'undefined') ||
+// //    //     (this.password == '') ||
+// //    //     (this.password == 'undefined')){
+// //    //     this.isRegistered = false;
+// //    //     this.createStorytellerMessage = "Your registration is incomplete";
+// //    //     return;
+// //    //  }
+//
+//      $http({ // Makes HTTP request to server
+//        method: 'POST',
+//        url: backend_domain + '/storytellers',
+//        data: { // Gets turned into req.body
+//           storyteller: {
+//             username: author.username,
+//             name: author.name,
+//             img: author.img,
+//             password: author.password,
+//             email: author.email
+//           }
+//        }
+//      }).then(function(response) {
+//        console.log(response);
+//        if(response.status == 201)
+//        {
+//           this.author = response.data.storyteller;
+//           window.location.href = frontend_domain; //"http://localhost:8000";
+//        }
+//    }.bind(this));
+// };
