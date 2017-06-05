@@ -91,7 +91,7 @@ app.controller('StoryController', ['$http', function($http){
    //   var today = new Date();
    //   var date = today.getFullYear() + '-' + (today.getMonth() + 1 ) + '-' + today.getDate() + 'T';
    //   var time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
-     console.log('Stories: ', result);
+   //  console.log('Stories: ', result);
      this.stories = result.data.reverse();
      //console.log(this.addSnippet);
    //   localStorage.setItem('', this.stories);
@@ -112,7 +112,7 @@ app.controller('StoryController', ['$http', function($http){
    //      Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
    //    }
    }).then(function(result){
-     //console.log('Snippets: ',result.data);
+    // console.log('Snippets: ',result.data);
    //   console.log(JSON.parse(localStorage.getItem('stories')));
      this.snippets = result.data;
      //console.log(this.storyteller);
@@ -236,7 +236,7 @@ app.controller('StoryController', ['$http', function($http){
    //---Story: Function Set Recent Snippet Title---
    //==============================================
    this.setRecentSnippetTitle = function(){
-      //console.log('This.Snippets: ',this.snippets);
+      //console.log('This.SnippetsInFunction: ',this.snippets);
     //   this.setSnippetTitle();
       //console.log('This.Stories: ', this.stories);
       //CHECK FOR THIS.SNIPPETS.LENGTH IS LESS THAN 6-Need to verify
@@ -245,28 +245,29 @@ app.controller('StoryController', ['$http', function($http){
                // console.log('i: ', i);
                //console.log('Snippets: ', this.snippets[i]);
                 this.recentSnippets.push(this.snippets[i]);
-               // console.log('Recent Snip: ', this.recentSnippets);
-               // console.log('Recent Snip: ', this.recentSnippets[]);
-         }
-      }else{
-         for (var j = 0 ; j <= this.snippets.length ; j++) {
-               // console.log('i: ', i);
-               //console.log('Snippets: ', this.snippets[i]);
-                this.recentSnippets.push(this.snippets[j]);
                 this.recentSnippets = this.recentSnippets.reverse();
                // console.log('Recent Snip: ', this.recentSnippets);
                // console.log('Recent Snip: ', this.recentSnippets[]);
          }
+      }else{
+         for (var j = 0 ; j <= this.snippets.length-1 ; j++) {
+               //console.log('j: ', j);
+               // console.log('Snippets: ', this.snippets[j]);
+                this.recentSnippets.push(this.snippets[j]);
+                this.recentSnippets = this.recentSnippets.reverse();
+               //console.log('Recent Snip<6: ', this.recentSnippets);
+               // console.log('Recent Snip: ', this.recentSnippets[]);
+         }
       }
       for (var k = 0; k < this.recentSnippets.length; k++) {
-          //console.log('In FOR loop', i);
+          //console.log('In FOR loop', k);
           for (var l = 0; l < this.stories.length; l++) {
              //console.log('In second FOR loop', j);
-             //console.log('Recent Snippet Story ID ', this.recentSnippets[i].story_id );
-             //console.log('Stories Story ID ', this.stories[j].id);
-             //console.log('Recent Snippet of l ', this.recentSnippets[k].story_id );
+            // console.log('Recent Snippet Story ID ', this.recentSnippets[k].title );
+            // console.log('Stories Story ID ', this.stories[l].id);
+             //console.log('Recent Snippet of k ', this.recentSnippets[k].story_id );
              if (this.recentSnippets[k].story_id === this.stories[l].id){
-                 //console.log('In IF statement [i], [j], storytitle', i,j,this.stories[i].title);
+                // console.log('In IF statement [k], [l], storytitle', k,l,this.stories[l].title);
                  this.snippetTitle.push(this.stories[l].title);
                  //console.log('Snippet Title after push: ',this.snippetTitle);
              }
