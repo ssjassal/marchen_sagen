@@ -26,7 +26,8 @@ For game play while having a copy of the project for development you will the fo
 4. Working Browser(IE, Chrome, Mozilla, Firefox)
 5. Some knowledge of JavaScript, Jquery, HTML, CSS
 6. Angularjs
-7. Ruby on Rails 
+7. Ruby on Rails
+8. Express
 ```
 ### Installing
 
@@ -46,6 +47,7 @@ Here are the steps to get a development environment up and running
    Instructions can be found here: [Recording Changes to a Git Repository](https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository)
 10. Install Angular
 11. Install Ruby on Rails
+12. Install Express
 
 ## Unsolved Problems
 
@@ -126,6 +128,7 @@ The Create route would work through through the Postman service however when cre
 * [Github](https://github.com/) - Repository
 * [Angular](https://angularjs.org/)
 * [Ruby on Rails](http://rubyonrails.org/)
+* [Express](https://expressjs.com/)
 
 ## Authors
 
